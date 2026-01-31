@@ -9,6 +9,8 @@ public class ShapeStateController : StateController
         CinemachineCameraController.instance.SetTarget(_cameraTarget);
 
         InGameUIController.instance.SetPreviewPanel(true);
+
+        CursorManager.instance.EquipTool(CursorType.Knife);
     }
 
     public override void OnUpdateState()

@@ -21,6 +21,8 @@ public class ResultStateController : StateController
 
     private float _currentSimilarity = 0f;
 
+    private Sprite _currentResultSprite;
+
     public override void OnEnterState()
     {
         // 손님 기다리기
@@ -63,6 +65,7 @@ public class ResultStateController : StateController
 
         Sprite baseSprite = Sprite.Create(baseTexture, new Rect(0, 0, baseTexture.width, baseTexture.height), new Vector2(0.5f, 0.5f));
         Sprite targetSprite = Sprite.Create(targetTexture, new Rect(0, 0, targetTexture.width, targetTexture.height), new Vector2(0.5f, 0.5f));
+        _currentResultSprite = targetSprite;
 
         _resultPanelController.SetResultImage(baseSprite, targetSprite);
         _resultPanelController.Open();
@@ -156,9 +159,32 @@ public class ResultStateController : StateController
 
         Debug.Log($"캡처 저장됨: {path}");
     }
-    
+
     public float GetCurrentSimilarity()
     {
         return _currentSimilarity;
+    }
+    
+    public Sprite GetCurrentResultSprite()
+    {
+        if (_currentResultSprite == null) return null;
+
+        Texture2D originalTex = _currentResultSprite.texture;
+        if (originalTex == null) return null;
+
+        // Texture2D 복사 (원본 보호)
+        Texture2D newTex = new Texture2D(originalTex.width, originalTex.height, originalTex.format, false);
+        newTex.SetPixels(originalTex.GetPixels());
+        newTex.Apply();
+
+        // 새 Sprite 생성 (복사된 텍스처 사용)
+        Sprite newSprite = Sprite.Create(
+            newTex,
+            _currentResultSprite.rect,
+            _currentResultSprite.pivot,
+            _currentResultSprite.pixelsPerUnit
+        );
+
+        return newSprite;
     }
 }

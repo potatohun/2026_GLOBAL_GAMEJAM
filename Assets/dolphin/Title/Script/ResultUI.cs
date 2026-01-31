@@ -18,8 +18,8 @@ public class ResultUI : MonoBehaviour
         Bonus_Score = 0;
         Dictionary<Sprite, float> SuccessAgentDic = GameManager.i.SuccessAgentDic;
         Dictionary<Sprite, float> FailAgentDic = GameManager.i.FailAgentDic;
-        GameManager.i.SuccessAgentDic.Clear();
-         GameManager.i.FailAgentDic.Clear();
+        // GameManager.i.SuccessAgentDic.Clear();
+        // GameManager.i.FailAgentDic.Clear();
 
         int SuccessMask = SuccessAgentDic.Count;
 
@@ -81,15 +81,11 @@ public class ResultUI : MonoBehaviour
         int bs = ((int)Bonus_Score);
         if (bs > 0)
         {
-            AddScoreText.text = " √— ∏Ìº∫ " + "+"+bs;
-        }
-        else if (bs == 0)
-        {
-            AddScoreText.text = " √— ∏Ìº∫ " + bs;
+            AddScoreText.text = " Ï¥ù Î™ÖÏÑ± " + "+" + bs;
         }
         else
         {
-            AddScoreText.text = " √— ∏Ìº∫ " + "-" +bs;
+            AddScoreText.text = " Ï¥ù Î™ÖÏÑ± " + bs;
         }
     }
 

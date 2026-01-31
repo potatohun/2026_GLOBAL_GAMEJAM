@@ -9,7 +9,7 @@ public class RequestStateController : StateController
     public RequestPanelController _requestPanel;
     public override void OnEnterState()
     {
-        this.transform.DOMoveY(-8f, 1f).SetEase(Ease.InOutExpo);
+        this.transform.DOMoveY(-11f, 1f).SetEase(Ease.InOutExpo);
 
         // 초기화
         MaskCreateManager.instance.Init();
@@ -27,7 +27,7 @@ public class RequestStateController : StateController
 
     public override void OnExitState()
     {
-        this.transform.DOMoveY(-19f, 1f).SetEase(Ease.InOutExpo);
+        this.transform.DOMoveY(-20f, 1f).SetEase(Ease.InOutExpo);
         base.OnExitState();
     }
 

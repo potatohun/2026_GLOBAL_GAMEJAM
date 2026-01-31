@@ -20,7 +20,7 @@ public class PropsStateController : StateController
 
     public override void OnEnterState()
     {
-        this.transform.DOMoveY(-8f, 1f).SetEase(Ease.InOutExpo);
+        this.transform.DOMoveY(-11f, 1f).SetEase(Ease.InOutExpo);
         Init();
     }
 
@@ -31,7 +31,7 @@ public class PropsStateController : StateController
 
     public override void OnExitState()
     {
-        this.transform.DOMoveY(-19f, 1f).SetEase(Ease.InOutExpo);
+        this.transform.DOMoveY(-20f, 1f).SetEase(Ease.InOutExpo);
         base.OnExitState();
     }
 
