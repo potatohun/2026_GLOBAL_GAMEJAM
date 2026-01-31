@@ -7,6 +7,7 @@ public class WaitingHandler : IGameHandler
 
     public void Enter()
     {
+        MaskCreateManager.instance.Play();
         Debug.Log("ENTER WAITING");
     }
 
