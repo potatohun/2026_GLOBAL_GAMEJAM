@@ -32,6 +32,14 @@ public class PropsStateController : StateController
 
     private void Init()
     {
+        // 초기화
+        for (int i = 0; i < _propsHolder.childCount; i++)
+        {
+            Destroy(_propsHolder.GetChild(i).gameObject);
+        }
+
+        _currentProps = new List<GameObject>();
+
         // 마스크 데이터 가져오기
         MaskData maskData = MaskCreateManager.instance.GetCurrentMaskData();
 

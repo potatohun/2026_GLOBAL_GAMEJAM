@@ -47,6 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae9302d2f51b6c842942bf9f6e172c5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PropController
+  _camera: {fileID: 0}
+  _maskLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!212 &4253357808712642608
 SpriteRenderer:
   serializedVersion: 2
@@ -233,7 +237,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 8824262280662943398}
           m_TargetAssemblyTypeName: PropController, Assembly-CSharp
-          m_MethodName: OnDrop
+          m_MethodName: OnDragEnd
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

@@ -35,6 +35,17 @@ public class PaintStateController : StateController
 
     private void Init()
     {
+        // 초기화
+        for (int i = 0; i < _paintHolder.childCount; i++)
+        {
+            Destroy(_paintHolder.GetChild(i).gameObject);
+        }
+
+        // 페인트 색상 초기화
+        _currentPaintColor = new Color(0f, 0f, 0f, 0f);
+        MaskController maskController = MaskCreateManager.instance.GetCurrentMaskController();
+        maskController.SetPaintColor(_currentPaintColor);
+
         // 마스크 데이터 가져오기
         MaskData maskData = MaskCreateManager.instance.GetCurrentMaskData();
 

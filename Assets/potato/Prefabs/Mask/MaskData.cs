@@ -7,7 +7,7 @@ public class MaskData : ScriptableObject
     [SerializeField] string mask_id;
 
     [Header("Target Mask Sprite")]
-    [SerializeField] Sprite target_mask_sprite;
+    [SerializeField] Sprite base_mask_sprite;
 
     [Header("Color Palette")]
     [SerializeField] Color[] color_palette;
@@ -20,9 +20,9 @@ public class MaskData : ScriptableObject
         return mask_id;
     }
 
-    public Sprite GetTargetMaskSprite()
+    public Sprite GetBaseMaskSprite()
     {
-        return target_mask_sprite;
+        return base_mask_sprite;
     }
 
     public Color[] GetColorPalette()

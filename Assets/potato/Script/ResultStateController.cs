@@ -31,7 +31,13 @@ public class ResultStateController : StateController
 
     private void Init()
     {
-        _baseSpriteRenderer.sprite = MaskCreateManager.instance.GetCurrentMaskData().GetTargetMaskSprite();
+        // 다음 버튼 비활성화
+        InGameUIController.instance.SetPreviewPanel(false);
+        InGameUIController.instance.SetNextButton(false);
+        InGameUIController.instance.SetResultPanel(false);
+
+        // 
+        _baseSpriteRenderer.sprite = MaskCreateManager.instance.GetCurrentMaskData().GetBaseMaskSprite();
     }
 
     IEnumerator EnterStateDelayed()
@@ -55,7 +61,8 @@ public class ResultStateController : StateController
 
         // Target Texture 캡쳐쳐
         Texture2D targetTexture = CaptureAt(_captureTarget);
-        if(targetTexture == null){
+        if (targetTexture == null)
+        {
             Debug.LogWarning("Target Texture is null. Cannot capture.");
             yield break;
         }
@@ -65,13 +72,15 @@ public class ResultStateController : StateController
         _targetSpriteRenderer.sprite = targetSprite;
 
         SaveCapture(targetTexture, "target.png");
-        
+
         // 텍스처 비교
         _textureCompareController.SetBaseSprite(_baseSpriteRenderer);
         _textureCompareController.SetTargetSprite(_targetSpriteRenderer);
 
         float similarity = _textureCompareController.Compare();
         Debug.Log($"텍스처 비교 결과: {similarity}");
+        
+        InGameUIController.instance.SetResultPanel(true);
     }
 
     public override void OnUpdateState()

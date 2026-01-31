@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,7 +20,8 @@ public class EraseMaskController : MonoBehaviour
     [Range(0.05f, 1.0f)] public float spacingFactor = 0.35f;
 
     [Header("Paint")]
-    public Color paintColor = Color.red;    // �������� ���� (UI���� �ٲٸ� ��)
+    public Color paintColor = Color.red;
+    public Color outlineColor = Color.black;    // �������� ���� (UI���� �ٲٸ� ��)
     [Range(0.0f, 1.0f)] public float paintOpacity = 1.0f; // 1�̸� ���ϰ�, 0.5�� ������
 
     [Header("Limit to sprite pixels (optional)")]
@@ -49,6 +51,7 @@ public class EraseMaskController : MonoBehaviour
     // Stroke smoothing
     private bool hasLastUV;
     private Vector2 lastUV;
+
 
     // Shader property IDs
     static readonly int MaskTexId = Shader.PropertyToID("_MaskTex");
@@ -258,7 +261,7 @@ public class EraseMaskController : MonoBehaviour
         Graphics.Blit(paintRT, paintTempRT, paintStampMat);
         Swap(ref paintRT, ref paintTempRT);
 
-        // display ����
+        // display 갱신
         displayMat.SetTexture(PaintTexId, paintRT);
     }
 

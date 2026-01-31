@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8560047256160011554}
   - component: {fileID: 2988148664449211465}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MaskBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 3441567364932161994}
   - component: {fileID: 651707310237359846}
   - component: {fileID: 4357603785383805514}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,8 @@ MonoBehaviour:
   radiusUV: 0.04
   hardness: 0.8
   spacingFactor: 0.35
-  paintColor: {r: 1, g: 0, b: 0, a: 1}
+  paintColor: {r: 1, g: 1, b: 1, a: 0}
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
   paintOpacity: 1
   limitToSpriteAlpha: 1
   alphaThreshold: 0.05

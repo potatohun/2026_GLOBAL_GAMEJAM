@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class ShapeStateController : StateController
 {
+    [Header("Settings")]
+    [SerializeField]
+    public int _outlineWidth = 1;
+
     public override void OnEnterState()
     {
         base.OnEnterState();

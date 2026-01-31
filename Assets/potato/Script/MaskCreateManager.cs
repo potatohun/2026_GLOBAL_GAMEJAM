@@ -58,30 +58,48 @@ public class MaskCreateManager : MonoBehaviour
         _currentState = MaskCreateState.Request;
     }
 
-    public void Start()
+    void Start()
     {
-        Init();
+        // 테스트 용 시작
+        Play();
     }
 
     public void Init()
     {
+        // 초기화
+        for (int i = 0; i < _maskHolder.childCount; i++)
+            Destroy(_maskHolder.GetChild(i).gameObject);
+
+        if (_currentMask != null)
+            _currentMask = null;
+
+        if (_currentMaskController != null)
+            _currentMaskController = null;
+
+        if (_currentMaskData != null)
+            _currentMaskData = null;
+
         _currentState = MaskCreateState.Request;
-        SetCameraToCurrentState();
     }
 
     public void Play()
     {
-        Debug.Log("Start to make mask");
+        // Play 시작
+        SetCameraToCurrentState();
     }
 
     public void Next()
     {
-        Debug.Log("Next to make mask");
-        int nextIndex = (int)_currentState + 1;
+        // 상태 컨트롤러 탈출
+        int index = (int)_currentState;
+        stateControllers[index].OnExitState();
+
+        // 상태 컨트롤러 진입
+        int nextIndex = index + 1;
         if (nextIndex > (int)MaskCreateState.Result)
-        {
             nextIndex = (int)MaskCreateState.Request;
-        }
+
+        // 상태 변경
         _currentState = (MaskCreateState)nextIndex;
         SetCameraToCurrentState();
     }

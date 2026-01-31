@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: "\uC591\uBC18\uD0C8"
   m_EditorClassIdentifier: Assembly-CSharp::MaskData
   mask_id: mask_01
-  target_mask_sprite: {fileID: 21300000, guid: 49cd2242d77f9fe41bf8bb23120c9c54, type: 3}
+  base_mask_sprite: {fileID: 21300000, guid: 49cd2242d77f9fe41bf8bb23120c9c54, type: 3}
   color_palette:
   - {r: 0.5803922, g: 0.35686275, b: 0.20392159, a: 1}
   - {r: 0.24705884, g: 0.16470589, b: 0.13725491, a: 1}
   props:
   - {fileID: 3634879818415598581, guid: a6cda38e7d0dc9b43a7c021cf097c3ea, type: 3}
   - {fileID: 3634879818415598581, guid: ec174974f11beb041938e090035fbd55, type: 3}
-  - {fileID: 3634879818415598581, guid: b699a7559fd79e148953374c6cb2b8c0, type: 3}
   - {fileID: 3634879818415598581, guid: 9ba01a8091a15af409bb8ef1dfeb0691, type: 3}
+  - {fileID: 3634879818415598581, guid: b699a7559fd79e148953374c6cb2b8c0, type: 3}
