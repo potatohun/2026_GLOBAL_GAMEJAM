@@ -9,9 +9,9 @@ public class EraseMaskController : MonoBehaviour
     public Collider2D targetCollider;
 
     [Header("Materials")]
-    public Material displayMaterial;        // Shader: Unlit/SpriteEraseDisplay (¼öÁ¤º»)
+    public Material displayMaterial;        // Shader: Unlit/SpriteEraseDisplay (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
     public Material eraseStampMaterial;     // Shader: Hidden/EraseStamp
-    public Material paintStampMaterial;     // Shader: Hidden/PaintStamp (Ãß°¡)
+    public Material paintStampMaterial;     // Shader: Hidden/PaintStamp (ï¿½ß°ï¿½)
 
     [Header("Brush")]
     [Range(0.001f, 0.5f)] public float radiusUV = 0.04f;
@@ -19,8 +19,8 @@ public class EraseMaskController : MonoBehaviour
     [Range(0.05f, 1.0f)] public float spacingFactor = 0.35f;
 
     [Header("Paint")]
-    public Color paintColor = Color.red;    // ¡°¼±ÅÃÇÑ »ö»ó¡± (UI¿¡¼­ ¹Ù²Ù¸é µÊ)
-    [Range(0.0f, 1.0f)] public float paintOpacity = 1.0f; // 1ÀÌ¸é ÁøÇÏ°Ô, 0.5¸é ¹ÝÅõ¸í
+    public Color paintColor = Color.red;    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (UIï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Ù¸ï¿½ ï¿½ï¿½)
+    [Range(0.0f, 1.0f)] public float paintOpacity = 1.0f; // 1ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½, 0.5ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     [Header("Limit to sprite pixels (optional)")]
     public bool limitToSpriteAlpha = true;
@@ -72,7 +72,7 @@ public class EraseMaskController : MonoBehaviour
         if (!cam) cam = Camera.main;
         if (!targetCollider) targetCollider = GetComponent<Collider2D>();
 
-        // ÀÎ½ºÅÏ½ºÈ­(¿ÀºêÁ§Æ®º° µ¶¸³)
+        // ï¿½Î½ï¿½ï¿½Ï½ï¿½È­(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
         displayMat = Instantiate(displayMaterial);
         eraseStampMat = Instantiate(eraseStampMaterial);
         paintStampMat = Instantiate(paintStampMaterial);
@@ -137,17 +137,17 @@ public class EraseMaskController : MonoBehaviour
 
     void BindMaterials()
     {
-        // Display: mask + paint ¿¬°á
+        // Display: mask + paint ï¿½ï¿½ï¿½ï¿½
         displayMat.SetTexture(MaskTexId, maskRT);
         displayMat.SetTexture(PaintTexId, paintRT);
         sr.material = displayMat;
 
-        // Erase stamp: Åõ¸í ÇÈ¼¿ Á¦ÇÑ ¿É¼Ç(¿øÇÏ¸é ²ô±â)
+        // Erase stamp: ï¿½ï¿½ï¿½ï¿½ ï¿½È¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½É¼ï¿½(ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½)
         eraseStampMat.SetTexture(BaseTexId, sr.sprite.texture);
         eraseStampMat.SetFloat(AlphaThId, alphaThreshold);
         eraseStampMat.SetFloat(UseLimitId, limitToSpriteAlpha ? 1f : 0f);
 
-        // Paint stamp: paintRT ´©Àû + (Áß¿ä) erase mask¸¦ ÀÐ¾î¼­ ¡°Áö¿öÁöÁö ¾ÊÀº ¿µ¿ª¡±¿¡¸¸ ±×¸²
+        // Paint stamp: paintRT ï¿½ï¿½ï¿½ï¿½ + (ï¿½ß¿ï¿½) erase maskï¿½ï¿½ ï¿½Ð¾î¼­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½
         paintStampMat.SetTexture(EraseMaskId, maskRT);
         paintStampMat.SetFloat(OpacityId, paintOpacity);
     }
@@ -163,13 +163,13 @@ public class EraseMaskController : MonoBehaviour
             return;
         }
 
-        // A Å°¸¦ ´©¸£´Â µ¿¾ÈÀº Paint ¸ðµå (¾È ´©¸£¸é Erase ¸ðµå)
-        bool paintMode = Keyboard.current.aKey.isPressed;
+        // A Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Paint ï¿½ï¿½ï¿½ (ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Erase ï¿½ï¿½ï¿½)
+        MaskCreateState maskCreateState = MaskCreateManager.instance.GetCurrentState();
 
         Vector2 mouseScreen = Mouse.current.position.ReadValue();
         Vector2 mouseWorld = cam.ScreenToWorldPoint(mouseScreen);
 
-        // ½ºÇÁ¶óÀÌÆ® ¿µ¿ª ¾È¿¡¼­¸¸
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½È¿ï¿½ï¿½ï¿½ï¿½ï¿½
         RaycastHit2D hit = Physics2D.Raycast(mouseWorld, Vector2.zero);
         if (!hit || hit.collider != targetCollider)
         {
@@ -183,24 +183,31 @@ public class EraseMaskController : MonoBehaviour
             return;
         }
 
-        // Ã¹ ÇÁ·¹ÀÓ
+        // Ã¹ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (!hasLastUV)
         {
-            if (paintMode) PaintAtUV(uv);
-            else EraseAtUV(uv);
+            switch (maskCreateState)
+            {
+                case MaskCreateState.Shape:
+                    EraseAtUV(uv);
+                    break;
+                case MaskCreateState.Paint:
+                    PaintAtUV(uv);
+                    break;
+            }
 
             lastUV = uv;
             hasLastUV = true;
             return;
         }
 
-        // Á¡¼± ¹æÁö(º¸°£)
-        StepAlongSegment(lastUV, uv, paintMode);
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
+        StepAlongSegment(lastUV, uv);
 
         lastUV = uv;
     }
 
-    void StepAlongSegment(Vector2 from, Vector2 to, bool paintMode)
+    void StepAlongSegment(Vector2 from, Vector2 to)
     {
         float dist = Vector2.Distance(from, to);
         float step = Mathf.Max(0.0001f, radiusUV * spacingFactor);
@@ -210,8 +217,16 @@ public class EraseMaskController : MonoBehaviour
         {
             float t = (float)i / count;
             Vector2 p = Vector2.Lerp(from, to, t);
-            if (paintMode) PaintAtUV(p);
-            else EraseAtUV(p);
+            MaskCreateState maskCreateState = MaskCreateManager.instance.GetCurrentState();
+            switch (maskCreateState)
+            {
+                case MaskCreateState.Shape:
+                    EraseAtUV(p);
+                    break;
+                case MaskCreateState.Paint:
+                    PaintAtUV(p);
+                    break;
+            }
         }
     }
 
@@ -225,10 +240,10 @@ public class EraseMaskController : MonoBehaviour
         Graphics.Blit(maskRT, maskTempRT, eraseStampMat);
         Swap(ref maskRT, ref maskTempRT);
 
-        // paintStamp°¡ ÃÖ½Å ¸¶½ºÅ©¸¦ º¸µµ·Ï °»½Å
+        // paintStampï¿½ï¿½ ï¿½Ö½ï¿½ ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         paintStampMat.SetTexture(EraseMaskId, maskRT);
 
-        // display °»½Å
+        // display ï¿½ï¿½ï¿½ï¿½
         displayMat.SetTexture(MaskTexId, maskRT);
     }
 
@@ -244,7 +259,7 @@ public class EraseMaskController : MonoBehaviour
         Graphics.Blit(paintRT, paintTempRT, paintStampMat);
         Swap(ref paintRT, ref paintTempRT);
 
-        // display °»½Å
+        // display ï¿½ï¿½ï¿½ï¿½
         displayMat.SetTexture(PaintTexId, paintRT);
     }
 
@@ -267,5 +282,10 @@ public class EraseMaskController : MonoBehaviour
 
         uv = new Vector2(u, v);
         return true;
+    }
+
+    public void SetPaintColor(Color color)
+    {
+        paintColor = color;
     }
 }
