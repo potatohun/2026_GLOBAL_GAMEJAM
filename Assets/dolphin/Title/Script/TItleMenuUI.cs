@@ -86,7 +86,7 @@ public class TitleMenuUI : MonoBehaviour
         AudioManager.instance.PlayClickSound();
         AudioManager.instance.StopBGM();
         PlayerPrefs.DeleteAll();
-        GameState.i.SetState(GAME.START);
+        GameState.i.SetState(GAME.CUTSCENE);
         //_controllerSelectViewAnim.Play("Show");
     }
 

@@ -6,6 +6,7 @@ using static UnityEngine.CullingGroup;
 public enum GAME
 {
     MENU,
+    CUTSCENE,
     START,
     WAITING,
     CONTACT,

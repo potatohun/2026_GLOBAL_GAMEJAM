@@ -1429,6 +1429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   state: {fileID: 1758013044}
   gameScene: MainGame
+  cutScene: CutScene
   Limittime: 60
   _gameUI: {fileID: 0}
   Tal_cnt: 0
@@ -11459,6 +11460,8 @@ MonoBehaviour:
   canvasRect: {fileID: 539681654}
   particleRect: {fileID: 740608642}
   ps: {fileID: 792406695}
+  currentTime: 0
+  delayTime: 0.5
 --- !u!1 &1103343434
 GameObject:
   m_ObjectHideFlags: 0
@@ -11942,6 +11945,8 @@ MonoBehaviour:
   canvasRect: {fileID: 539681654}
   particleRect: {fileID: 740608642}
   ps: {fileID: 792406695}
+  currentTime: 0
+  delayTime: 0.5
 --- !u!114 &1458571536
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/dolphin/MainGame/MainGame.unity
     guid: 984a4742f7367ff43b31792ac4157d05
+  - enabled: 1
+    path: Assets/dolphin/CutScene/CutScene.unity
+    guid: d31c622966e7c4c4cb9b14c9c76e34cc
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
