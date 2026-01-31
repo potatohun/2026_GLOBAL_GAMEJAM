@@ -7,6 +7,7 @@ public class ResultHandler : IGameHandler
 
     public void Enter()
     {
+        gm._gameUI.OnResultUI();
     }
 
     public void Tick()

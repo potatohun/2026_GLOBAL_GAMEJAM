@@ -7,6 +7,7 @@ public class EndHandler : IGameHandler
 
     public void Enter()
     {
+        gm._gameUI.OnGameOverUI();
     }
 
     public void Tick()

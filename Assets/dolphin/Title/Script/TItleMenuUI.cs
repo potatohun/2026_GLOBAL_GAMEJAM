@@ -11,6 +11,8 @@ public class TitleMenuUI : MonoBehaviour
     [Header("Views")]
     [SerializeField] private GameObject _mainMenuView;
     [SerializeField] private GameObject _OptionView;
+    [SerializeField] private GameObject _mainButtonView;
+    [SerializeField] private GameObject _startButtonView;
 
     // Main Menu Buttons
     [Header("Main Menu UI")]
@@ -71,6 +73,19 @@ public class TitleMenuUI : MonoBehaviour
     }
 
     protected virtual void OnPlayButtonPressed()
+    {
+        _mainButtonView.SetActive(false);
+        _startButtonView.SetActive(true);
+        //_controllerSelectViewAnim.Play("Show");
+    }
+    protected virtual void OnNewStartButtonPressed()
+    {
+        PlayerPrefs.DeleteAll();
+        GameState.i.SetState(GAME.START);
+        //_controllerSelectViewAnim.Play("Show");
+    }
+
+    protected virtual void OnContinueButtonPressed()
     {
         GameState.i.SetState(GAME.START);
         //_controllerSelectViewAnim.Play("Show");
