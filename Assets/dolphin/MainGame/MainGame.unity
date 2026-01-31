@@ -782,7 +782,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1558248736}
-  - {fileID: 1185650892}
   m_Father: {fileID: 302241345}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
@@ -2210,7 +2209,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "[\uC784\uBB34 \uC131\uACF5\uD55C \uC694\uC6D0]"
+  m_text: "[\uC784\uBB34 \uC131\uACF5\uD55C \uAC00\uBA74]"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7c3f9a638597c4b4380cf98a1ab0ebc4, type: 2}
   m_sharedMaterial: {fileID: -3868675494442075500, guid: 7c3f9a638597c4b4380cf98a1ab0ebc4, type: 2}
@@ -2597,17 +2596,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185650891}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 300305505}
+  m_Father: {fileID: 1558248736}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 75}
-  m_SizeDelta: {x: 10, y: -75}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 10, y: 66}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1185650893
 MonoBehaviour:
@@ -2629,7 +2628,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -993183575786483884, guid: 1120f62571ea2a343b439dac5a5d4b7a, type: 3}
+  m_Sprite: {fileID: 409737535836822455, guid: e7c1a772c343a9641847f92b44c49ab3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3551,7 +3550,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "[\uC784\uBB34 \uC2E4\uD328\uD55C \uC694\uC6D0]"
+  m_text: "[\uC784\uBB34 \uC2E4\uD328\uD55C \uAC00\uBA74]"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7c3f9a638597c4b4380cf98a1ab0ebc4, type: 2}
   m_sharedMaterial: {fileID: -3868675494442075500, guid: 7c3f9a638597c4b4380cf98a1ab0ebc4, type: 2}
@@ -4221,7 +4220,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1185650892}
   m_Father: {fileID: 300305505}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4249,7 +4249,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1296809859183125015, guid: 51da3dbcdc49bdd4fbe5abfbc0b64f7e, type: 3}
+  m_Sprite: {fileID: -1511362926639617380, guid: b7cdc836597f21a49b7429f0397fbdfd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
