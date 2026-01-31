@@ -122,6 +122,7 @@ public class GameUI : MonoBehaviour
     protected virtual void OnRestartButtonPressed()
     {
         AudioManager.instance.PlayClickSound();
+        AudioManager.instance.StopBGM();
         GameState.i.SetState(GAME.START);
     }
     protected virtual void GoToMainMenu()
@@ -133,6 +134,6 @@ public class GameUI : MonoBehaviour
 
     public void UpdateConquer(float data)
     {
-        _controlRateUI.slider.value += data;
+        _controlRateUI.Now_Gage += data;
     }
 }
