@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a4b068079e104be44b9c53519b5d0b9a
+guid: 9330a763fd3487940b04bba41275129a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4347341491811462203
-    second: Frame 11_0
+      213: -1721902535817997439
+    second: sussie_1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Frame 11_0
+      name: sussie_1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 456
-        height: 364
+        x: 1
+        y: 1
+        width: 666
+        height: 502
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b3c2db8bd0cd45c30800000000000000
-      internalID: 4347341491811462203
+      spriteID: 18359b644c29a18e0800000000000000
+      internalID: -1721902535817997439
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Frame 11_0: 4347341491811462203
+      sussie_1_0: -1721902535817997439
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -19,13 +19,15 @@ public class PaintStateController : StateController
     [SerializeField]
     private Color _currentPaintColor;
 
+    [Header("Brush")]
+    [SerializeField] private bool _isBigBrush = false;
+    public GameObject _bigBrush;
+    public GameObject _smallBrush;
     public override void OnEnterState()
     {
         this.transform.DOMoveY(-11f, 1f).SetEase(Ease.InOutExpo);
 
         Init();
-
-        CursorManager.instance.EquipTool(CursorType.Brush);
     }
 
     public override void OnUpdateState()
@@ -61,6 +63,12 @@ public class PaintStateController : StateController
         Color[] colorPalette = maskData.GetColorPalette();
         int count = colorPalette.Length;
 
+        // 브러시 크기 설정
+        _bigBrush.SetActive(false);
+        _smallBrush.SetActive(true);
+        CursorManager.instance.EquipTool(CursorType.BigBrush);
+        _isBigBrush = true;
+
         for (int i = 0; i < count; i++)
         {
             GameObject paint = Instantiate(_paintPrefab, _paintHolder);
@@ -79,5 +87,22 @@ public class PaintStateController : StateController
         maskController.SetPaintColor(_currentPaintColor);
 
         CursorManager.instance.SetColor(_currentPaintColor);
+    }
+
+    public void OnClickBrush()
+    {
+        if(_isBigBrush) {
+            _bigBrush.SetActive(true);
+            _smallBrush.SetActive(false);
+            CursorManager.instance.EquipTool(CursorType.Brush);
+            _isBigBrush = false;
+            MaskCreateManager.instance.GetCurrentMaskController().SetBrushSize(_isBigBrush);
+        } else {
+            _bigBrush.SetActive(false);
+            _smallBrush.SetActive(true);
+            CursorManager.instance.EquipTool(CursorType.BigBrush);
+            _isBigBrush = true;
+            MaskCreateManager.instance.GetCurrentMaskController().SetBrushSize(_isBigBrush);
+        }
     }
 }

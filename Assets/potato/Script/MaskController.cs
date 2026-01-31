@@ -13,4 +13,13 @@ public class MaskController : MonoBehaviour
     {
         _eraseMaskController.SetPaintColor(color);
     }
+
+    public void SetBrushSize(bool isBigBrush)
+    {
+        if(isBigBrush) {
+            _eraseMaskController.radiusUV = 0.04f;
+        } else {
+            _eraseMaskController.radiusUV = 0.01f;
+        }
+    }
 }

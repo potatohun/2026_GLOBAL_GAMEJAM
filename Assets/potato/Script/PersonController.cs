@@ -32,7 +32,7 @@ public class PersonController : MonoBehaviour
         // 초기화
         _personSprite.color = new Color(1, 1, 1, 0);
         _textBackground.color = new Color(1, 1, 1, 0);
-        _personText.color = new Color(1, 1, 1, 1);
+        _personText.color = new Color(0, 0, 0, 1);
         _personText.text = "";
 
         // 랜덤 사람 가져오기

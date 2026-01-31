@@ -1350,7 +1350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4940581934408871532, guid: d8d2016764feb944aa15ffa3a2c49130, type: 3}
       propertyPath: m_Name
-      value: "mask_03_\uC601\uAC10\uD0C8_nose"
+      value: "mask_04_\uC601\uAC10\uD0C8_nose"
       objectReference: {fileID: 0}
     - target: {fileID: 8059446331005574561, guid: d8d2016764feb944aa15ffa3a2c49130, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1395,5 +1395,50 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4940581934408871532, guid: d8d2016764feb944aa15ffa3a2c49130, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 135703582469656480}
   m_SourcePrefab: {fileID: 100100000, guid: d8d2016764feb944aa15ffa3a2c49130, type: 3}
+--- !u!1 &3634879818415598581 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4940581934408871532, guid: d8d2016764feb944aa15ffa3a2c49130, type: 3}
+  m_PrefabInstance: {fileID: 8566364328649999769}
+  m_PrefabAsset: {fileID: 0}
+--- !u!70 &135703582469656480
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3634879818415598581}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0.03}
+  m_Size: {x: 0.5, y: 1.24}
+  m_Direction: 0
