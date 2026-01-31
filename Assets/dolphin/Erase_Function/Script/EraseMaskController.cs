@@ -186,7 +186,7 @@ public class EraseMaskController : MonoBehaviour
         // ù ������
         if (!hasLastUV)
         {
-            switch (maskCreateState)
+            switch(maskCreateState)
             {
                 case MaskCreateState.Shape:
                     EraseAtUV(uv);
@@ -202,12 +202,12 @@ public class EraseMaskController : MonoBehaviour
         }
 
         // ���� ����(����)
-        StepAlongSegment(lastUV, uv);
+        StepAlongSegment(lastUV, uv, maskCreateState);
 
         lastUV = uv;
     }
 
-    void StepAlongSegment(Vector2 from, Vector2 to)
+    void StepAlongSegment(Vector2 from, Vector2 to, MaskCreateState maskCreateState)
     {
         float dist = Vector2.Distance(from, to);
         float step = Mathf.Max(0.0001f, radiusUV * spacingFactor);
@@ -217,8 +217,7 @@ public class EraseMaskController : MonoBehaviour
         {
             float t = (float)i / count;
             Vector2 p = Vector2.Lerp(from, to, t);
-            MaskCreateState maskCreateState = MaskCreateManager.instance.GetCurrentState();
-            switch (maskCreateState)
+            switch(maskCreateState)
             {
                 case MaskCreateState.Shape:
                     EraseAtUV(p);
