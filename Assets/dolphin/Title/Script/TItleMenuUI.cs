@@ -38,6 +38,8 @@ public class TitleMenuUI : MonoBehaviour
         if (_optionButton)
             _optionButton.onClick.AddListener(OnOptionButtonPressed);
 
+        AudioManager.instance.PlayTitleBGM();
+
     }
 
     public void ShowView(GameObject view)
@@ -74,12 +76,15 @@ public class TitleMenuUI : MonoBehaviour
 
     protected virtual void OnPlayButtonPressed()
     {
+        AudioManager.instance.PlayClickSound();
         _mainButtonView.SetActive(false);
         _startButtonView.SetActive(true);
         //_controllerSelectViewAnim.Play("Show");
     }
     protected virtual void OnNewStartButtonPressed()
     {
+        AudioManager.instance.PlayClickSound();
+        AudioManager.instance.StopBGM();
         PlayerPrefs.DeleteAll();
         GameState.i.SetState(GAME.START);
         //_controllerSelectViewAnim.Play("Show");
@@ -87,17 +92,21 @@ public class TitleMenuUI : MonoBehaviour
 
     protected virtual void OnContinueButtonPressed()
     {
+        AudioManager.instance.PlayClickSound();
+        AudioManager.instance.StopBGM();
         GameState.i.SetState(GAME.START);
         //_controllerSelectViewAnim.Play("Show");
     }
 
     public void OnBackToMenuPressed(GameObject view)
     {
+        AudioManager.instance.PlayCloseOptionSound();
         HideViewAndReturn(view);
     }
 
     protected virtual void OnOptionButtonPressed()
     {
+        AudioManager.instance.PlayOptionSound();
         ShowView(_OptionView);
     }
     protected virtual void OnBackFromOptionView()
@@ -107,6 +116,7 @@ public class TitleMenuUI : MonoBehaviour
 
     public void OnQuitButtonPressed()
     {
+        AudioManager.instance.PlayClickSound();
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
