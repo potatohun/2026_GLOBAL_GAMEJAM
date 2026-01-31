@@ -19,10 +19,6 @@ public class MaskCreateManager : MonoBehaviour
     [SerializeField]
     public List<StateController> stateControllers;
 
-    [Header("CinemachineCameraController")]
-    [SerializeField]
-    public CinemachineCameraController cinemachineCameraController;
-
     [Header("Current State")]
     [SerializeField]
     private MaskCreateState _currentState;
@@ -61,7 +57,7 @@ public class MaskCreateManager : MonoBehaviour
     void Start()
     {
         // 테스트 용 시작
-        //Play();
+        Play();
     }
 
     public void Init()
@@ -85,13 +81,16 @@ public class MaskCreateManager : MonoBehaviour
     public void Play()
     {
         // Play 시작
-        SetCameraToCurrentState();
+        int index = (int)_currentState;
+        stateControllers[index].OnEnterState();
     }
 
     public void Next()
     {
         // 상태 컨트롤러 탈출
         int index = (int)_currentState;
+        
+        // 상태 컨트롤러 탈출
         stateControllers[index].OnExitState();
 
         // 상태 컨트롤러 진입
@@ -101,23 +100,9 @@ public class MaskCreateManager : MonoBehaviour
 
         // 상태 변경
         _currentState = (MaskCreateState)nextIndex;
-        SetCameraToCurrentState();
-    }
-
-    void SetCameraToCurrentState()
-    {
-        if (cinemachineCameraController == null || stateControllers == null)
-            return;
-
-        int index = (int)_currentState;
-        if (index < 0 || index >= stateControllers.Count)
-            return;
-
-        // 카메라 타겟 설정
-        cinemachineCameraController.SetTarget(stateControllers[index].transform);
-
-        // 상태 컨트롤러 진입
-        stateControllers[index].OnEnterState();
+        
+         // 상태 컨트롤러 진입
+        stateControllers[nextIndex].OnEnterState();
     }
 
     public void SetMask(MaskData maskData)
@@ -134,7 +119,7 @@ public class MaskCreateManager : MonoBehaviour
 
         _currentMaskController = _currentMask.GetComponent<MaskController>();
 
-        // 각 단계 별 필요 정보 전달
+        Debug.Log("Mask Created: " + _currentMaskData.name);
     }
 
     public MaskController GetCurrentMaskController()

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "\uC601\uAC10\uD0C8"
   m_EditorClassIdentifier: Assembly-CSharp::MaskData
   mask_id: mask_04
-  base_mask_sprite: {fileID: 21300000, guid: ba33ec687497b084c94729968f6f6868, type: 3}
+  base_mask_sprite: {fileID: 21300000, guid: 9436fbb4cb20fb845815a9882c1a1db5, type: 3}
   color_palette:
   - {r: 0.48235297, g: 0.38823533, b: 0.37647063, a: 1}
   - {r: 0.9215687, g: 0.8941177, b: 0.8941177, a: 1}
