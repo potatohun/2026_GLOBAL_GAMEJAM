@@ -83,6 +83,10 @@ public class CursorManager : MonoBehaviour
     public void EquipTool(CursorType type)
     {
         int index = type.GetHashCode();
+        _cursor[1].GetComponent<Knife_Controller>().ps.Stop();
+        _cursor[2].GetComponent<Pen_Controller>().ps.Stop();
+        _cursor[3].GetComponent<Pen_Controller>().ps.Stop();
+
         for (int i = 0; i < _cursor.Length; i++)
         {
              _cursor[i].SetActive(i == index);
