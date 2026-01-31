@@ -15,6 +15,8 @@ public class ResultPanelController : MonoBehaviour
 
     public void Open()
     {
+        AudioManager.instance.PlayOptionSound();
+        
         _panel_result.SetActive(true);
         _background.DOFade(0.8f, 1f).SetEase(Ease.InOutExpo).OnComplete(() =>
         {
@@ -24,6 +26,8 @@ public class ResultPanelController : MonoBehaviour
 
     public void Close()
     {
+        AudioManager.instance.PlayCloseOptionSound();
+        
         _resultRectTransform.DOAnchorPosY(1080f, 1f).SetEase(Ease.InOutExpo).OnComplete(() =>
         {
             _background.DOFade(0f, 1f).SetEase(Ease.InOutExpo);
@@ -39,6 +43,8 @@ public class ResultPanelController : MonoBehaviour
 
     public void OnSellButtonClick()
     {
+        AudioManager.instance.PlayClickSound();
+
         // TO DO : 점수 보냄
         GameManager.i.SentAgent(_resultStateController.GetCurrentResultSprite(), _resultStateController.GetCurrentSimilarity());
 
@@ -49,6 +55,8 @@ public class ResultPanelController : MonoBehaviour
 
     public void OnDepositButtonClick()
     {
+         AudioManager.instance.PlayClickSound();
+
         // 다음으로 넘어가기
         MaskCreateManager.instance.Next();
         

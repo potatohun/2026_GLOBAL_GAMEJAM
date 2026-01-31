@@ -16,6 +16,8 @@ public class RequestPanelController : MonoBehaviour
 
     public void Open()
     {
+        AudioManager.instance.PlayOptionSound();
+
         _panel_request.SetActive(true);
         _background.DOFade(0.8f, 1f).SetEase(Ease.InOutExpo).OnComplete(() =>
         {
@@ -26,6 +28,8 @@ public class RequestPanelController : MonoBehaviour
 
     public void Close()
     {
+        AudioManager.instance.PlayCloseOptionSound();
+
          _requestImage.DOAnchorPosY(1080f, 1f).SetEase(Ease.InOutExpo);
          _sussieImage.DOFade(0f, 1f).SetEase(Ease.InOutExpo).OnComplete(() =>
         {
@@ -43,6 +47,8 @@ public class RequestPanelController : MonoBehaviour
     
     public void OnClickRequestButton()
     {
+        AudioManager.instance.PlayClickSound();
+        
         Close();
     }
 }

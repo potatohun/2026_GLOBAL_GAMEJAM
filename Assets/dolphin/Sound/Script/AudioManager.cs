@@ -95,6 +95,21 @@ public class AudioManager : MonoBehaviour
         BGM_AudioSource.PlayOneShot(bgmDict["BGM_Title_Loop"]);
     }
 
+    public void PlayDetailsUp()
+    {
+        SFX_AudioSource.PlayOneShot(sfxDict["SFX_Ingame_Details_Up"]);
+    }
+
+    public void PlayDetailsDown()
+    {
+        SFX_AudioSource.PlayOneShot(sfxDict["SFX_Ingame_Details_Down"]);
+    }
+
+    public void PlayBirdCome()
+    {
+        SFX_AudioSource.PlayOneShot(sfxDict["SFX_Ingame_Bird_Come"]);
+    }
+
     public void StopBGM()
     {
         BGM_AudioSource.Stop();
@@ -108,14 +123,14 @@ public class AudioManager : MonoBehaviour
    
     public void SetAudioVolume(EAudioMixerType audioMixerType, float volume)
     {
-        // ¿Àµð¿À ¹Í¼­ÀÇ °ªÀº -80 ~ 0±îÁöÀÌ±â ¶§¹®¿¡ 0.0001 ~ 1ÀÇ Log10 * 20À» ÇÑ´Ù.
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Í¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ -80 ~ 0ï¿½ï¿½ï¿½ï¿½ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 0.0001 ~ 1ï¿½ï¿½ Log10 * 20ï¿½ï¿½ ï¿½Ñ´ï¿½.
         audioMixer.SetFloat(audioMixerType.ToString(), Mathf.Log10(volume) * 20);
     }
 
     public void SetAudioMute(EAudioMixerType audioMixerType)
     {
         int type = (int)audioMixerType;
-        if (!isMute[type]) // ¹ÂÆ® 
+        if (!isMute[type]) // ï¿½ï¿½Æ® 
         {
             isMute[type] = true;
             audioMixer.GetFloat(audioMixerType.ToString(), out float curVolume);

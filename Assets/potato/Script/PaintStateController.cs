@@ -82,6 +82,8 @@ public class PaintStateController : StateController
 
     public void OnClickPaint(PaintController paintController)
     {
+        AudioManager.instance.PlayClickSound();
+
         _currentPaintColor = paintController.GetColor();
         MaskController maskController = MaskCreateManager.instance.GetCurrentMaskController();
         maskController.SetPaintColor(_currentPaintColor);
@@ -91,13 +93,18 @@ public class PaintStateController : StateController
 
     public void OnClickBrush()
     {
-        if(_isBigBrush) {
+        AudioManager.instance.PlayClickSound();
+        
+        if (_isBigBrush)
+        {
             _bigBrush.SetActive(true);
             _smallBrush.SetActive(false);
             CursorManager.instance.EquipTool(CursorType.Brush);
             _isBigBrush = false;
             MaskCreateManager.instance.GetCurrentMaskController().SetBrushSize(_isBigBrush);
-        } else {
+        }
+        else
+        {
             _bigBrush.SetActive(false);
             _smallBrush.SetActive(true);
             CursorManager.instance.EquipTool(CursorType.BigBrush);

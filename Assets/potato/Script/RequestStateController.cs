@@ -48,5 +48,7 @@ public class RequestStateController : StateController
         // 요청 이미지 설정
         _requestPanel.SetRequestImage(maskData.GetBaseMaskSprite());
         _requestPanel.Open();
+
+        AudioManager.instance.PlayBirdCome();
     }
 }

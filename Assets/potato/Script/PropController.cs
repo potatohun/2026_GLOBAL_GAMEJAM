@@ -18,6 +18,11 @@ public class PropController : MonoBehaviour
             _maskLayer = LayerMask.GetMask("Mask");
     }
 
+    public void OnDragStart()
+    {
+        AudioManager.instance.PlayDetailsUp();
+    }
+
     public void OnDrag()
     {
         if (_isUsed)
@@ -35,7 +40,7 @@ public class PropController : MonoBehaviour
 
     public void OnDragEnd()
     {
-        Debug.Log("OnDrop");
+        AudioManager.instance.PlayDetailsDown();
         _isUsed = true;
 
         // 마지막 마우스 포인터 위치가 Mask Layer 위에 있는지 Raycast로 확인

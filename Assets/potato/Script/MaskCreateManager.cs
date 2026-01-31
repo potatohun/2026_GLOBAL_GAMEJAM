@@ -57,7 +57,7 @@ public class MaskCreateManager : MonoBehaviour
     void Start()
     {
         // 테스트 용 시작
-        // Play();
+        //Play();
     }
 
     public void Init()

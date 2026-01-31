@@ -40,6 +40,8 @@ public class InGameUIController : MonoBehaviour
     }
     public void OnClickNextButton()
     {
+        AudioManager.instance.PlayClickSound();
+        
         if (Time.time - _nextButtonLastCallTime < _nextButtonCooldown)
             return;
 
@@ -57,6 +59,8 @@ public class InGameUIController : MonoBehaviour
     {
         if (_isOpenPreviewPanel)
         {
+            AudioManager.instance.PlayCloseOptionSound();
+            
             // 미리보기 닫기
             _previewPanel.DOAnchorPosX(-660f, 0.5f).SetEase(_easeType).OnComplete(() =>
             {
@@ -66,6 +70,8 @@ public class InGameUIController : MonoBehaviour
         }
         else
         {
+            AudioManager.instance.PlayOptionSound();
+            
             // 미리보기 열기
             _previewPanel.DOAnchorPosX(-60f, 0.5f).SetEase(_easeType).OnComplete(() =>
             {
@@ -79,6 +85,8 @@ public class InGameUIController : MonoBehaviour
     {
         if (isOpen)
         {
+            AudioManager.instance.PlayOptionSound();
+            
             _previewPanel.DOKill(true);
             _previewPanel.DOAnchorPosX(-60f, 0.5f).SetEase(_easeType).OnComplete(() =>
             {
@@ -88,6 +96,8 @@ public class InGameUIController : MonoBehaviour
         }
         else
         {
+            AudioManager.instance.PlayCloseOptionSound();
+            
             _previewPanel.DOKill(true);
             _previewPanel.DOAnchorPosX(-660f, 0.5f).SetEase(_easeType).OnComplete(() =>
             {
@@ -113,6 +123,8 @@ public class InGameUIController : MonoBehaviour
     {
         if (isActive)
         {
+            AudioManager.instance.PlayClickSound();
+            
             _nextButton.gameObject.SetActive(true);
             _nextButton.GetComponent<Image>().DOFade(1f, 1f).SetEase(_easeType).OnComplete(() =>
             {
@@ -121,6 +133,8 @@ public class InGameUIController : MonoBehaviour
         }
         else
         {
+            AudioManager.instance.PlayClickSound();
+
             _nextButton.interactable = false;
             _nextButton.GetComponent<Image>().DOFade(0f, 1f).SetEase(_easeType).OnComplete(() =>
             {
@@ -134,12 +148,16 @@ public class InGameUIController : MonoBehaviour
     {
         if (isOpen)
         {
+            AudioManager.instance.PlayOptionSound();
+            
             _resultPanel.gameObject.SetActive(true);
             _resultBackgroundPanel.DOFade(0.8f, 1f).SetEase(_easeType);
             _resultContentPanel.DOAnchorPosY(0f, 1f).SetEase(_easeType);
         }
         else
         {
+            AudioManager.instance.PlayCloseOptionSound();
+            
             _resultBackgroundPanel.DOFade(0f, 1f).SetEase(_easeType);
             _resultContentPanel.DOAnchorPosY(-this._resultContentPanel.rect.height, 1f).SetEase(_easeType).OnComplete(() =>
             {
@@ -150,14 +168,16 @@ public class InGameUIController : MonoBehaviour
 
     public void OnClickSellButton()
     {
-        Debug.Log("Set Sell Button");
+        AudioManager.instance.PlayClickSound();
+
         MaskCreateManager.instance.Next();
         SetResultPanel(false);
     }
 
     public void OnClickDisposeButton()
     {
-        Debug.Log("Set Dispose Button");
+        AudioManager.instance.PlayClickSound();
+        
         MaskCreateManager.instance.Next();
         SetResultPanel(false);
     }
