@@ -12,6 +12,7 @@ public enum CursorType
     Hand,
     Knife,
     Brush,
+    BigBrush,
 }
 public class CursorManager : MonoBehaviour
 {
@@ -22,7 +23,8 @@ public class CursorManager : MonoBehaviour
     [Header("UI Cursor (optional)")]
     public RectTransform cursorRect;
 
-    public Image pen_tip;
+    public Image pen_tip_1;
+    public Image pen_tip_2;
     public ParticleSystem pen_Particle;
 
     void Awake()
@@ -65,14 +67,16 @@ public class CursorManager : MonoBehaviour
 
     public void SetColor(UnityEngine.Color color)
     {
-        pen_tip.color = color;
+        pen_tip_1.color = color;
+        pen_tip_2.color = color;
         var main = pen_Particle.main;
         main.startColor = color;
     }
 
     public void initial_Color()
     {
-        pen_tip.color = UnityEngine.Color.white;
+        pen_tip_1.color = UnityEngine.Color.white;
+        pen_tip_2.color = UnityEngine.Color.white;
         var main = pen_Particle.main;
         main.startColor = UnityEngine.Color.white;
     }
@@ -90,8 +94,12 @@ public class CursorManager : MonoBehaviour
             {
                 initial_Color();
             }
-            
-            
+            if (type == CursorType.BigBrush)
+            {
+                initial_Color();
+            }
+
+
         }
     }
 }
