@@ -1,15 +1,16 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ResultUI : MonoBehaviour
 {
-    public Sprite[] Success_Agent_UI;
-    public Sprite[] Fail_Agent_UI;
+    public Image[] Success_Agent_UI;
+    public Image[] Fail_Agent_UI;
     public Sprite[] Stamp;
     public Image StampImage;
     public float Bonus_Score;
-    public Text AddScoreText;
+    public TextMeshProUGUI AddScoreText;
     public Sprite blank;
 
     private void OnEnable()
@@ -17,6 +18,8 @@ public class ResultUI : MonoBehaviour
         Bonus_Score = 0;
         Dictionary<Sprite, float> SuccessAgentDic = GameManager.i.SuccessAgentDic;
         Dictionary<Sprite, float> FailAgentDic = GameManager.i.FailAgentDic;
+        GameManager.i.SuccessAgentDic.Clear();
+         GameManager.i.FailAgentDic.Clear();
 
         int SuccessMask = SuccessAgentDic.Count;
 
@@ -84,7 +87,7 @@ public class ResultUI : MonoBehaviour
         {
             AddScoreText.text = " ÃÑ ¸í¼º " + bs;
         }
-        else;
+        else
         {
             AddScoreText.text = " ÃÑ ¸í¼º " + "-" +bs;
         }
@@ -99,21 +102,21 @@ public class ResultUI : MonoBehaviour
         {
             for(int i = 0; i < list.Count; ++i)
             {
-                Success_Agent_UI[i] = list[i].Key;
+                Success_Agent_UI[i].sprite = list[i].Key;
             }
         }
         else
         {
             for(int i = 0; i < 5; ++i)
             {
-                Success_Agent_UI[i] = list[i].Key;
+                Success_Agent_UI[i].sprite = list[i].Key;
             }
         }
 
         int l_cnt = list.Count;
         while(l_cnt < 5)
         {
-            Success_Agent_UI[l_cnt] = blank;
+            Success_Agent_UI[l_cnt].sprite = blank;
             l_cnt++;
         }
     }
@@ -127,21 +130,21 @@ public class ResultUI : MonoBehaviour
         {
             for (int i = 0; i < list.Count; ++i)
             {
-                Fail_Agent_UI[i] = list[i].Key;
+                Fail_Agent_UI[i].sprite = list[i].Key;
             }
         }
         else
         {
             for (int i = 0; i < 5; ++i)
             {
-                Fail_Agent_UI[i] = list[i].Key;
+                Fail_Agent_UI[i].sprite = list[i].Key;
             }
         }
 
         int l_cnt = list.Count;
         while (l_cnt < 5)
         {
-            Fail_Agent_UI[l_cnt] = blank;
+            Fail_Agent_UI[l_cnt].sprite = blank;
             l_cnt++;
         }
     }

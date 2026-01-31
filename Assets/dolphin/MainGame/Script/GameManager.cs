@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour
     public Dictionary<Sprite, float> SuccessAgentDic;
     public Dictionary<Sprite, float> FailAgentDic;
 
+    public int Tal_cnt = 0;
+    public float Max_Score = 0.0f;
+
     void Awake()
     {
         if (i != null) { Destroy(gameObject); return; }
@@ -43,10 +46,14 @@ public class GameManager : MonoBehaviour
             { GAME.RESULT,  new ResultHandler(this) },
             { GAME.END,     new EndHandler(this) },
         };
-        AddScore = 0;
 
     }
 
+    public void ResetScore()
+    {
+        Tal_cnt = 0;
+        Max_Score = 0.0f;
+    }
 
     private void OnEnable()
     {
@@ -116,6 +123,7 @@ public class GameManager : MonoBehaviour
 
     public void SentAgent(Sprite sprite, float probability)
     {
+        Tal_cnt++;
         CheckProbability(probability);
 
         float AgentProbability = probability + 10.0f;
