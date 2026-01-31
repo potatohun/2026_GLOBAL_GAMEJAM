@@ -8,6 +8,8 @@ public class Pen_Controller : MonoBehaviour
     [SerializeField] private RectTransform particleRect;
     [SerializeField] public ParticleSystem ps;
 
+    [SerializeField] private float currentTime = 0f;
+    [SerializeField] private float delayTime = 0.5f;
     void Update()
     {
         if (Mouse.current == null) return;
@@ -22,6 +24,15 @@ public class Pen_Controller : MonoBehaviour
 
         if (Mouse.current.leftButton.isPressed)
         {
+            if (currentTime > delayTime)
+            {
+                AudioManager.instance.PlayBrushSound();
+                currentTime = 0f;
+            }
+            else
+            {
+                currentTime += Time.deltaTime;
+            }
             SetPosition(mousePos);
         }
 

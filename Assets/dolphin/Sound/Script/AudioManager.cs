@@ -64,7 +64,26 @@ public class AudioManager : MonoBehaviour
     {
         SFX_AudioSource.PlayOneShot(sfxDict["SFX_Ingame_ShapeCut"]);
     }
+    
+    public void PlayBrushSound()
+    {
+        SFX_AudioSource.PlayOneShot(sfxDict["SFX_Ingame_Paint"]);
+    }
 
+    public void PlayResultSound()
+    {
+        SFX_AudioSource.PlayOneShot(sfxDict["UI_Result_Popup"]);
+    }
+
+    public void PlayStampSound()
+    {
+        SFX_AudioSource.PlayOneShot(sfxDict["SFX_Result_Stamp"]);
+    }
+
+    public void ReportSound()
+    {
+        SFX_AudioSource.PlayOneShot(sfxDict["SFX_Ingame_Report_Time"]);
+    }
 
     public void PlayInGameBGM()
     {

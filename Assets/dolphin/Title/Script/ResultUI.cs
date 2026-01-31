@@ -54,6 +54,7 @@ public class ResultUI : MonoBehaviour
         SetAddScoreText(Bonus_Score);
         FindFiveSuccessAgent(SuccessAgentDic);
         FindFiveFailAgent(FailAgentDic);
+        AudioManager.instance.PlayStampSound();
     }
 
     private void SetStamp(float Bonus_Score)

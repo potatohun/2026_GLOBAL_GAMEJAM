@@ -35,6 +35,7 @@ public class StartHandler : IGameHandler
             gm._gameUI._controlRateUI.SetGageData(GameState.i.conquer);
             gm.StartLimitTimer();   // 제한시간 시작 같은 거 여기서
             gm.ResetScore();
+            AudioManager.instance.PlayInGameBGM();
             GameState.i.SetState(GAME.WAITING);
         }
     }
