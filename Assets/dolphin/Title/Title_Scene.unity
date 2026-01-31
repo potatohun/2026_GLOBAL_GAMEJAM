@@ -1430,7 +1430,7 @@ MonoBehaviour:
   state: {fileID: 1758013044}
   gameScene: MainGame
   cutScene: CutScene
-  Limittime: 60
+  Limittime: 90
   _gameUI: {fileID: 0}
   Tal_cnt: 0
   Max_Score: 0

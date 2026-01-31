@@ -17,6 +17,7 @@ public class CutSceneManager : MonoBehaviour
 
     public void OnEndCutScene()
     {
+        AudioManager.instance.StopBGM();
         GameState.i.SetState(GAME.START);
     }
 

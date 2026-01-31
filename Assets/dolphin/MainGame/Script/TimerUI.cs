@@ -9,10 +9,12 @@ public class TimerUI : MonoBehaviour
 
     bool running = false;
 
+    bool isAlarm = false;
     void OnEnable()
     {
         elapsed = 0f;
         needle.localRotation = Quaternion.identity;
+        isAlarm = false ;
     }
 
     void Update()
@@ -28,9 +30,11 @@ public class TimerUI : MonoBehaviour
         float angle = Mathf.Lerp(0f, -360f, t);
         needle.localRotation = Quaternion.Euler(0f, 0f, angle);
 
-        if(elapsed <= 60.0f)
+        Debug.Log(limitTime - elapsed);
+        if((limitTime - elapsed) <= 60.0f && !isAlarm)
         {
             AudioManager.instance.ReportSound();
+            isAlarm = true ;
         }
 
         if (elapsed >= limitTime)
