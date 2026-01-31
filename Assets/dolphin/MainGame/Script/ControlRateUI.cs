@@ -21,6 +21,12 @@ public class ControlRateUI : MonoBehaviour
         slider.value =Now_Gage;
     }
 
+    public void SetGageData(float data)
+    {
+        Now_Gage = data;
+        slider.value = Now_Gage;
+    }
+
     void Update()
     {
         if (!running) return;

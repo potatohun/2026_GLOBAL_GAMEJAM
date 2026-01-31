@@ -1,9 +1,21 @@
-﻿using UnityEngine;
+﻿using NUnit.Framework;
+using System;
+using System.Xml.Serialization;
+using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum CursorType
+{
+    Hand,
+    Knife,
+    Brush,
+}
 public class CursorManager : MonoBehaviour
 {
     private static CursorManager instance;
+    public GameObject[] _cursor;
+    public CursorType _cursorType;
 
     [Header("UI Cursor (optional)")]
     public RectTransform cursorRect;
@@ -19,6 +31,7 @@ public class CursorManager : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(gameObject); // ⭐ 씬 유지 핵심
+        EquipTool(_cursorType);
     }
 
     void Start()
@@ -42,6 +55,21 @@ public class CursorManager : MonoBehaviour
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
+    private void EquipTool(CursorType type)
+    {
+        int index = type.GetHashCode();
+        for (int i = 0; i < _cursor.Length; i++)
+        {
+             _cursor[i].SetActive(i == index);
+            if(i == index)
+            {
+                cursorRect = _cursor[i].GetComponent<RectTransform>();
+            }
+            
+            
         }
     }
 }

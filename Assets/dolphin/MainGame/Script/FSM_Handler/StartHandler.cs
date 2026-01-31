@@ -16,9 +16,28 @@ public class StartHandler : IGameHandler
         Debug.Log("ENTER START");
         SceneManager.LoadScene(gm.gameScene);
         // 예: 씬 로드 끝나면 WAITING으로 넘어가고 싶으면
-        //if (gm._gameUI) gm._gameUI = GameUI.i ? GameUI.i : FindAnyObjectByType<GameUI>();
-        gm.StartLimitTimer();   // 제한시간 시작 같은 거 여기서
-        GameState.i.SetState(GAME.WAITING);
+
+        // 씬 로드 완료 이벤트 등록
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // 씬 로드 후 UI_Manager 재탐색
+        gm._gameUI = UnityEngine.Object.FindAnyObjectByType<GameUI>();
+
+        if (gm._gameUI == null)
+        {
+            Debug.LogWarning($"UI_Manager not found in scene: {scene.name}");
+        }
+        else
+        {
+            Debug.Log("UI_Manager successfully linked");
+            GameState.i.LoadGameData();
+            gm._gameUI._controlRateUI.SetGageData(GameState.i.conquer);
+            gm.StartLimitTimer();   // 제한시간 시작 같은 거 여기서
+            GameState.i.SetState(GAME.WAITING);
+        }
     }
 
     public void Tick() { }
