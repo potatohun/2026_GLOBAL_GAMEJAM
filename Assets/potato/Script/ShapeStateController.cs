@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class ShapeStateController : StateController
 {
-    [Header("Settings")]
-    [SerializeField]
-    public int _outlineWidth = 1;
+    public Transform _cameraTarget;
 
     public override void OnEnterState()
     {
-        base.OnEnterState();
+        CinemachineCameraController.instance.SetTarget(_cameraTarget);
+
+        InGameUIController.instance.SetPreviewPanel(true);
     }
 
     public override void OnUpdateState()

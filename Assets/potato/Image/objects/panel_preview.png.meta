@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ba33ec687497b084c94729968f6f6868
+guid: a94776ee0921f994b8dd6f872ca86a82
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3477602288134757637
-    second: "mask_04_\uC601\uAC10\uD0C8_color_0"
+      213: -4629613613065720279
+    second: Frame 15_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -24,7 +24,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 1
+  isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "mask_04_\uC601\uAC10\uD0C8_color_0"
+      name: Frame 15_0
       rect:
         serializedVersion: 2
-        x: 86
-        y: 49
-        width: 340
-        height: 430
+        x: 0
+        y: 0
+        width: 756
+        height: 712
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bf264a1e4231dbfc0800000000000000
-      internalID: -3477602288134757637
+      spriteID: 92ea7e992fe40cfb0800000000000000
+      internalID: -4629613613065720279
       vertices: []
       indices: 
       edges: []
@@ -164,7 +164,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "mask_04_\uC601\uAC10\uD0C8_color_0": -3477602288134757637
+      Frame 15_0: -4629613613065720279
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

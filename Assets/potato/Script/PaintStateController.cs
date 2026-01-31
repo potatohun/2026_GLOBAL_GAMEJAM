@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class PaintStateController : StateController
 {
@@ -20,6 +21,7 @@ public class PaintStateController : StateController
 
     public override void OnEnterState()
     {
+        this.transform.DOMoveY(-8f, 1f).SetEase(Ease.InOutExpo);
         Init();
     }
 
@@ -30,6 +32,7 @@ public class PaintStateController : StateController
 
     public override void OnExitState()
     {
+        this.transform.DOMoveY(-19f, 1f).SetEase(Ease.InOutExpo);
         base.OnExitState();
     }
 

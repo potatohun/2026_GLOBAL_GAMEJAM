@@ -2,51 +2,24 @@ using UnityEngine;
 
 public class TextureCompareController : MonoBehaviour
 {
-    [Header("Base Sprite")]
-    [SerializeField]
-    private SpriteRenderer _baseSpriteRenderer;
-    private Sprite _baseSprite;
-
-    [Header("Target Sprite")]
-    [SerializeField]
-    private SpriteRenderer _targetSpriteRenderer;
-    private Sprite _targetSprite;
-
     [Header("Compare Settings")]
-    [Tooltip("가로 위치 보정 범위 (픽셀). base 픽셀 기준 ±이 값만큼 좌우에서 같은 색을 찾음")]
     [SerializeField]
     private int _horizontalTolerance = 0;
-    [Tooltip("세로 위치 보정 범위 (픽셀). base 픽셀 기준 ±이 값만큼 위아래에서 같은 색을 찾음")]
+
     [SerializeField]
     private int _verticalTolerance = 0;
 
-    public void SetBaseSprite(SpriteRenderer spriteRenderer) {
-        this._baseSpriteRenderer = spriteRenderer;
-        this._baseSprite = spriteRenderer.sprite;
-    }
-
-    public void SetTargetSprite(SpriteRenderer spriteRenderer) {
-        this._targetSpriteRenderer = spriteRenderer;
-        this._targetSprite = spriteRenderer.sprite;
-    }
-
-    public float Compare() {
-        if (this._baseSprite == null || this._targetSprite == null) 
-        {
-            Debug.LogWarning("Base Sprite or Target Sprite is null.");
-            return -1f;
-        }
-
-        Texture2D baseTexture = this._baseSprite.texture;
-        Texture2D targetTexture = this._targetSprite.texture;
+    public float Compare(Texture2D baseSprite, Texture2D targetSprite) {
+        Texture2D baseTexture = baseSprite;
+        Texture2D targetTexture = targetSprite;
         if (baseTexture == null || targetTexture == null || !baseTexture.isReadable || !targetTexture.isReadable) 
         {
             Debug.LogWarning("Base Texture or Target Texture is not readable.");
             return -1f;
         }
 
-        Rect r1 = this._baseSprite.rect;
-        Rect r2 = this._targetSprite.rect; 
+        Rect r1 = new Rect(0, 0, baseTexture.width, baseTexture.height);
+        Rect r2 = new Rect(0, 0, targetTexture.width, targetTexture.height);
         int w1 = (int)r1.width;
         int h1 = (int)r1.height;
         int w2 = (int)r2.width;
@@ -74,15 +47,15 @@ public class TextureCompareController : MonoBehaviour
 
         int matchCount = 0;
         int count = 0;
-        const float alphaThreshold = 0.01f;
-        const float colorThreshold = 0.01f;
+        const float alphaThreshold = 0.1f;
+        const float colorThreshold = 0.1f;
 
         for (int y = 0; y < compareH; y++) {
             for (int x = 0; x < compareW; x++) {
                 Color c1 = basePixels[y * compareW + x];
 
-                if (c1.a < alphaThreshold)
-                    continue;
+                // if (c1.a < alphaThreshold)
+                //     continue;
 
                 bool isMatch = false;
 
@@ -101,8 +74,8 @@ public class TextureCompareController : MonoBehaviour
 
                         Color c2 = targetPixels[targetY * compareW + targetX];
 
-                        if (c2.a < alphaThreshold)
-                            continue;
+                        // if (c2.a < alphaThreshold)
+                        //     continue;
 
                         if (Mathf.Abs(c1.r - c2.r) < colorThreshold
                          && Mathf.Abs(c1.g - c2.g) < colorThreshold

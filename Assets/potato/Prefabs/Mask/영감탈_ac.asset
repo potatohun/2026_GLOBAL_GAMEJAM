@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b6b17415e73da45ac97e1b4c98ad6a, type: 3}
+  m_Name: "\uC601\uAC10\uD0C8_ac"
+  m_EditorClassIdentifier: Assembly-CSharp::MaskData
+  mask_id: mask_12
+  base_mask_sprite: {fileID: 21300000, guid: 712747e2050623d46970d327d1b3c352, type: 3}
+  color_palette:
+  - {r: 0.48235297, g: 0.38823533, b: 0.37647063, a: 1}
+  - {r: 0.9215687, g: 0.8941177, b: 0.8941177, a: 1}
+  props:
+  - {fileID: 3634879818415598581, guid: a69838b7a1f0cb6419f6fb5771a778d4, type: 3}
+  - {fileID: 3634879818415598581, guid: 7f8a7e0770ddee94c8d067b5556f875b, type: 3}
+  - {fileID: 3634879818415598581, guid: e16a6f10b36f5254a9108c9c4fed4074, type: 3}
+  - {fileID: 3634879818415598581, guid: 1cbe44923f1fcb74188f6c53a67d4cc0, type: 3}
+  - {fileID: 3634879818415598581, guid: fa29bdd3f88909844834f40ff8f773fb, type: 3}

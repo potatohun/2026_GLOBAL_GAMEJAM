@@ -1,18 +1,12 @@
 using System.Collections;
 using System.IO;
 using UnityEngine;
-
+using DG.Tweening;
 public class ResultStateController : StateController
 {
-    [Header("Base")]
-    [SerializeField] private SpriteRenderer _baseSpriteRenderer;
-
-    [Header("Target")]
-    [SerializeField] private SpriteRenderer _targetSpriteRenderer;
-
     [Header("Texture Compare")]
     [SerializeField] private TextureCompareController _textureCompareController;
-    
+
     [Header("Capture")]
     [SerializeField] private float _enterDelay = 0f;
     [SerializeField] private Camera _captureCamera;
@@ -20,8 +14,18 @@ public class ResultStateController : StateController
     [SerializeField] private int _captureSize = 512;
     [SerializeField] private float _captureOrthoSize = 5f;
 
+    [Header("Camera Target")]
+    [SerializeField] private Transform _cameraTarget;
+
+    public ResultPanelController _resultPanelController;
+
+    private float _currentSimilarity = 0f;
+
     public override void OnEnterState()
     {
+        // 손님 기다리기
+        CinemachineCameraController.instance.SetTarget(_cameraTarget);
+
         // 초기화
         Init();
 
@@ -35,9 +39,6 @@ public class ResultStateController : StateController
         InGameUIController.instance.SetPreviewPanel(false);
         InGameUIController.instance.SetNextButton(false);
         InGameUIController.instance.SetResultPanel(false);
-
-        // 
-        _baseSpriteRenderer.sprite = MaskCreateManager.instance.GetCurrentMaskData().GetBaseMaskSprite();
     }
 
     IEnumerator EnterStateDelayed()
@@ -45,21 +46,10 @@ public class ResultStateController : StateController
         if (_enterDelay > 0f)
             yield return new WaitForSeconds(_enterDelay);
 
-        // Base Texture 캡쳐
-        Texture2D baseTexture = CaptureAt(_baseSpriteRenderer.transform);
-        if (baseTexture == null)
-        {
-            Debug.LogWarning("Base Texture is null. Cannot capture.");
-            yield break;
-        }
+        // Base Texture 가져오기
+        Texture2D baseTexture = MaskCreateManager.instance.GetCurrentMaskData().GetBaseMaskSprite().texture;
 
-        Rect baseRect = new Rect(0, 0, baseTexture.width, baseTexture.height);
-        Sprite baseSprite = Sprite.Create(baseTexture, baseRect, new Vector2(0.5f, 0.5f));
-        _baseSpriteRenderer.sprite = baseSprite;
-
-        SaveCapture(baseTexture, "base.png");
-
-        // Target Texture 캡쳐쳐
+        // Target Texture 캡쳐
         Texture2D targetTexture = CaptureAt(_captureTarget);
         if (targetTexture == null)
         {
@@ -67,20 +57,15 @@ public class ResultStateController : StateController
             yield break;
         }
 
-        Rect targetRect = new Rect(0, 0, targetTexture.width, targetTexture.height);
-        Sprite targetSprite = Sprite.Create(targetTexture, targetRect, new Vector2(0.5f, 0.5f));
-        _targetSpriteRenderer.sprite = targetSprite;
-
-        SaveCapture(targetTexture, "target.png");
-
         // 텍스처 비교
-        _textureCompareController.SetBaseSprite(_baseSpriteRenderer);
-        _textureCompareController.SetTargetSprite(_targetSpriteRenderer);
+        _currentSimilarity = _textureCompareController.Compare(baseTexture, targetTexture);
+        Debug.Log("<color=red>텍스처 비교 결과: </color>" + _currentSimilarity);
 
-        float similarity = _textureCompareController.Compare();
-        Debug.Log($"텍스처 비교 결과: {similarity}");
-        
-        InGameUIController.instance.SetResultPanel(true);
+        Sprite baseSprite = Sprite.Create(baseTexture, new Rect(0, 0, baseTexture.width, baseTexture.height), new Vector2(0.5f, 0.5f));
+        Sprite targetSprite = Sprite.Create(targetTexture, new Rect(0, 0, targetTexture.width, targetTexture.height), new Vector2(0.5f, 0.5f));
+
+        _resultPanelController.SetResultImage(baseSprite, targetSprite);
+        _resultPanelController.Open();
     }
 
     public override void OnUpdateState()
@@ -170,5 +155,10 @@ public class ResultStateController : StateController
         File.WriteAllBytes(path, bytes);
 
         Debug.Log($"캡처 저장됨: {path}");
+    }
+    
+    public float GetCurrentSimilarity()
+    {
+        return _currentSimilarity;
     }
 }

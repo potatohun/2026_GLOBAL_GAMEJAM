@@ -9,12 +9,17 @@ public class InGameUIController : MonoBehaviour
     [Header("Buttons")]
     [SerializeField] private Button _nextButton; // 다음 단계 이동
     [SerializeField] private Button _previewButton; // 미리보기
+    [SerializeField] private float _nextButtonCooldown = 2f;
+    private float _nextButtonLastCallTime = -999f;
 
     [Header("Preview Panels")]
     [SerializeField] private RectTransform _previewPanel; // 미리보기 패널
-
     [SerializeField] private Image _previewImage; // 미리보기 이미지
-    private bool _isOpenPreviewPanel = true;
+
+    [SerializeField] private Image _previewButtonArrow;
+    [SerializeField] private float _previewAutoCloseDelay = 3f;
+
+    private bool _isOpenPreviewPanel = false;
 
     [Header("Result Panels")]
     [SerializeField] private RectTransform _resultPanel; // 결과 패널
@@ -35,7 +40,17 @@ public class InGameUIController : MonoBehaviour
     }
     public void OnClickNextButton()
     {
+        if (Time.time - _nextButtonLastCallTime < _nextButtonCooldown)
+            return;
+
+        _nextButtonLastCallTime = Time.time;
+
         MaskCreateManager.instance.Next();
+    }
+
+    public void SetActivePreviewPanel(bool isActive)
+    {
+        _previewPanel.gameObject.SetActive(isActive);
     }
 
     public void OnClickPreviewButton()
@@ -43,17 +58,19 @@ public class InGameUIController : MonoBehaviour
         if (_isOpenPreviewPanel)
         {
             // 미리보기 닫기
-            _previewPanel.DOAnchorPosX(-this._previewPanel.rect.width, 0.5f).SetEase(_easeType).OnComplete(() =>
+            _previewPanel.DOAnchorPosX(-660f, 0.5f).SetEase(_easeType).OnComplete(() =>
             {
                 _isOpenPreviewPanel = false;
+                _previewButtonArrow.transform.localScale = new Vector3(-1, 1, 1);
             });
         }
         else
         {
             // 미리보기 열기
-            _previewPanel.DOAnchorPosX(0f, 0.5f).SetEase(_easeType).OnComplete(() =>
+            _previewPanel.DOAnchorPosX(-60f, 0.5f).SetEase(_easeType).OnComplete(() =>
             {
                 _isOpenPreviewPanel = true;
+                _previewButtonArrow.transform.localScale = new Vector3(1, 1, 1);
             });
         }
     }
@@ -62,16 +79,20 @@ public class InGameUIController : MonoBehaviour
     {
         if (isOpen)
         {
-            _previewPanel.DOAnchorPosX(0f, 0.5f).SetEase(_easeType).OnComplete(() =>
+            _previewPanel.DOKill(true);
+            _previewPanel.DOAnchorPosX(-60f, 0.5f).SetEase(_easeType).OnComplete(() =>
             {
                 _isOpenPreviewPanel = true;
+                _previewButtonArrow.transform.localScale = new Vector3(1, 1, 1);
             });
         }
         else
         {
-            _previewPanel.DOAnchorPosX(-this._previewPanel.rect.width, 0.5f).SetEase(_easeType).OnComplete(() =>
+            _previewPanel.DOKill(true);
+            _previewPanel.DOAnchorPosX(-660f, 0.5f).SetEase(_easeType).OnComplete(() =>
             {
                 _isOpenPreviewPanel = false;
+                _previewButtonArrow.transform.localScale = new Vector3(-1, 1, 1);
             });
         }
     }
@@ -90,7 +111,23 @@ public class InGameUIController : MonoBehaviour
 
     public void SetNextButton(bool isActive)
     {
-        _nextButton.gameObject.SetActive(isActive);
+        if (isActive)
+        {
+            _nextButton.gameObject.SetActive(true);
+            _nextButton.GetComponent<Image>().DOFade(1f, 1f).SetEase(_easeType).OnComplete(() =>
+            {
+                _nextButton.interactable = true;
+            });
+        }
+        else
+        {
+            _nextButton.interactable = false;
+            _nextButton.GetComponent<Image>().DOFade(0f, 1f).SetEase(_easeType).OnComplete(() =>
+            {
+                _nextButton.gameObject.SetActive(false);
+                
+            });
+        }
     }
 
     public void SetResultPanel(bool isOpen)
