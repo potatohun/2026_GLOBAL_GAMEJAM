@@ -1429,7 +1429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   state: {fileID: 1758013044}
   gameScene: MainGame
-  Limittime: 600
+  Limittime: 60
   _gameUI: {fileID: 0}
   Tal_cnt: 0
   Max_Score: 0
@@ -11592,8 +11592,8 @@ MonoBehaviour:
   - code: SFX_Result_Stamp
     clip: {fileID: 8300000, guid: 258fc705700a1a340b3ee2ad6b8ad10f, type: 3}
   audioMixer: {fileID: 0}
-  BGM_AudioSource: {fileID: 0}
-  SFX_AudioSource: {fileID: 0}
+  BGM_AudioSource: {fileID: 313164356}
+  SFX_AudioSource: {fileID: 133451149}
 --- !u!4 &1184948375
 Transform:
   m_ObjectHideFlags: 0
@@ -17402,6 +17402,8 @@ MonoBehaviour:
   canvasRect: {fileID: 539681654}
   particleRect: {fileID: 740608642}
   ps: {fileID: 866051441}
+  currentTime: 0
+  delayTime: 0.5
 --- !u!114 &1846502612
 MonoBehaviour:
   m_ObjectHideFlags: 0

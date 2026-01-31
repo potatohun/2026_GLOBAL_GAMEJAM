@@ -8,6 +8,13 @@ public class Knife_Controller: MonoBehaviour
     [SerializeField] private RectTransform particleRect;
     [SerializeField] public ParticleSystem ps;
 
+    [SerializeField] private float currentTime = 0f;
+    [SerializeField] private float delayTime = 0.5f;
+
+    private void OnEnable()
+    {
+        currentTime = 0f;
+    }
     void Update()
     {
         if (Mouse.current == null) return;
@@ -22,8 +29,16 @@ public class Knife_Controller: MonoBehaviour
 
         if (Mouse.current.leftButton.isPressed)
         {
-            AudioManager.instance.PlayKnifeSound();
-            SetPosition(mousePos);
+            if (currentTime > delayTime)
+            {
+                AudioManager.instance.PlayKnifeSound();
+                currentTime = 0f;
+            }
+            else
+            {
+                currentTime += Time.deltaTime;
+            }
+                SetPosition(mousePos);
         }
 
         if (Mouse.current.leftButton.wasReleasedThisFrame)
