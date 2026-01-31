@@ -6,7 +6,7 @@ public class Pen_Controller : MonoBehaviour
     [Header("Refs")]
     [SerializeField] private RectTransform canvasRect;
     [SerializeField] private RectTransform particleRect;
-    [SerializeField] private ParticleSystem ps;
+    [SerializeField] public ParticleSystem ps;
 
     void Update()
     {

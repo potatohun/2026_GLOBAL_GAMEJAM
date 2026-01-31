@@ -6,7 +6,7 @@ public class Knife_Controller: MonoBehaviour
     [Header("Refs")]
     [SerializeField] private RectTransform canvasRect;
     [SerializeField] private RectTransform particleRect;
-    [SerializeField] private ParticleSystem ps;
+    [SerializeField] public ParticleSystem ps;
 
     void Update()
     {
@@ -22,6 +22,7 @@ public class Knife_Controller: MonoBehaviour
 
         if (Mouse.current.leftButton.isPressed)
         {
+            AudioManager.instance.PlayKnifeSound();
             SetPosition(mousePos);
         }
 
