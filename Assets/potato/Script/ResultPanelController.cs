@@ -11,6 +11,8 @@ public class ResultPanelController : MonoBehaviour
     [SerializeField] private Image _baseMaskImage;
     [SerializeField] private Image _resultMaskImage;
 
+    public ResultStateController _resultStateController;
+
     public void Open()
     {
         _panel_result.SetActive(true);
@@ -38,6 +40,7 @@ public class ResultPanelController : MonoBehaviour
     public void OnSellButtonClick()
     {
         // TO DO : 점수 보냄
+        GameManager.i.SentAgent(_resultStateController.GetCurrentResultSprite(), _resultStateController.GetCurrentSimilarity());
 
         PersonController.instance.Show();
         

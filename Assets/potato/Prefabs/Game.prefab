@@ -644,7 +644,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 9028953618734129825, guid: 8a9f9eae49de07347aa7b4330cbfbf97, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -881,7 +881,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 505551fde3c600d45857c259ae1ae4eb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -911,7 +911,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7985013434165734379
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1192,6 +1192,7 @@ MonoBehaviour:
   _resultRectTransform: {fileID: 1822200865015890565}
   _baseMaskImage: {fileID: 8181596332550004703}
   _resultMaskImage: {fileID: 3514517140047307999}
+  _resultStateController: {fileID: 7786214988904067867}
 --- !u!1 &1701630738235219281
 GameObject:
   m_ObjectHideFlags: 0
@@ -1581,7 +1582,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: -8725089844106830028, guid: 7e78fa4d30901e84496aa61b7beb9947, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2355,7 +2356,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &3657517707039553733
 MonoBehaviour:
@@ -2664,7 +2665,7 @@ Transform:
   m_GameObject: {fileID: 4296886027730337061}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -8, z: 0}
+  m_LocalPosition: {x: 0, y: -10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3229,9 +3230,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '
-
-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7c3f9a638597c4b4380cf98a1ab0ebc4, type: 2}
   m_sharedMaterial: {fileID: -3868675494442075500, guid: 7c3f9a638597c4b4380cf98a1ab0ebc4, type: 2}
@@ -3713,7 +3712,7 @@ Transform:
   m_GameObject: {fileID: 6372555071098602588}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -8, z: 0}
+  m_LocalPosition: {x: 0, y: -11, z: 0}
   m_LocalScale: {x: 0.93, y: 0.93, z: 0.93}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3766,7 +3765,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_MaskInteraction: 0
   m_Sprite: {fileID: 2279782638394876534, guid: 81babeb6280672641b35e5e03936c8ed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4618,7 +4617,7 @@ Transform:
   m_GameObject: {fileID: 8309414422131612001}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -8, z: -10}
+  m_LocalPosition: {x: 0, y: -11, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4660,7 +4659,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -3.8}
+  m_AnchoredPosition: {x: 0, y: -6.7}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1073220869111068134
@@ -4684,7 +4683,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &1096548990136647476
 MonoBehaviour:
@@ -4850,7 +4849,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7843882568285635035, guid: f1ee2c5e2942e904fb62988b5051ff7b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -19
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 7843882568285635035, guid: f1ee2c5e2942e904fb62988b5051ff7b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4912,7 +4911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab09d69b288cd24995ec1504efa366a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PaintStateController
-  _paintSpacing: 3
+  _paintSpacing: 2.5
   _paintPrefab: {fileID: 1699316726153258589, guid: a84b35a9e4a7ba940ae7df3e82b25ede, type: 3}
   _paintHolder: {fileID: 7251770113538710296}
   _currentPaintColor: {r: 0, g: 0, b: 0, a: 0}
@@ -4939,7 +4938,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7843882568285635035, guid: f1ee2c5e2942e904fb62988b5051ff7b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -19
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 7843882568285635035, guid: f1ee2c5e2942e904fb62988b5051ff7b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5029,7 +5028,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7843882568285635035, guid: f1ee2c5e2942e904fb62988b5051ff7b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -19
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 7843882568285635035, guid: f1ee2c5e2942e904fb62988b5051ff7b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5209,7 +5208,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7843882568285635035, guid: f1ee2c5e2942e904fb62988b5051ff7b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8
+      value: -11
       objectReference: {fileID: 0}
     - target: {fileID: 7843882568285635035, guid: f1ee2c5e2942e904fb62988b5051ff7b, type: 3}
       propertyPath: m_LocalPosition.z

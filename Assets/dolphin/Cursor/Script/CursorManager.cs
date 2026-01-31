@@ -16,7 +16,7 @@ public enum CursorType
 }
 public class CursorManager : MonoBehaviour
 {
-    private static CursorManager instance;
+    public static CursorManager instance;
     public GameObject[] _cursor;
     public CursorType _cursorType;
 

@@ -34,6 +34,10 @@ public class GameManager : MonoBehaviour
         i = this;
         DontDestroyOnLoad(gameObject);
 
+        // Dictionary ???
+        SuccessAgentDic = new Dictionary<Sprite, float>();
+        FailAgentDic = new Dictionary<Sprite, float>();
+
         if (!state) state = GameState.i ? GameState.i : FindAnyObjectByType<GameState>();
 
         handlers = new Dictionary<GAME, IGameHandler>
@@ -53,6 +57,9 @@ public class GameManager : MonoBehaviour
     {
         Tal_cnt = 0;
         Max_Score = 0.0f;
+
+        SuccessAgentDic.Clear();
+        FailAgentDic.Clear();
     }
 
     private void OnEnable()
@@ -60,7 +67,7 @@ public class GameManager : MonoBehaviour
         if (!state) state = GameState.i ? GameState.i : FindAnyObjectByType<GameState>();
         if (state) state.OnStateChanged += OnStateChanged;
 
-        // ÇöÀç »óÅÂ°¡ ÀÌ¹Ì ¼¼ÆÃµÅÀÖÀ» ¼ö ÀÖÀ¸´Ï Enter ÇÑ¹ø º¸Àå
+        // ???? ???ï¿½? ??? ???ï¿½????? ?? ?????? Enter ??? ????
         if (state) SwitchTo(state.PlayState);
     }
 
@@ -93,20 +100,20 @@ public class GameManager : MonoBehaviour
         currentHandler.Enter();
     }
 
-    // ===== »óÅÂ¿¡¼­ È£ÃâÇÒ °ø°³ ±â´É(¿©±â ¸ð¾ÆµÎ¸é Ã¥ÀÓ ºÐ¸® ±ò²û) =====
+    // ===== ???ï¿½??? ????? ???? ???(???? ????? ï¿½?? ??? ???) =====
 
     public float GetLimitTime() => i ? i.Limittime : 0f;
 
     public void StartLimitTimer()
     {
-        // TODO: Å¸ÀÌ¸Ó ÄÄÆ÷³ÍÆ® Start, UI Ç¥½Ã µî
+        // TODO: ???? ??????? Start, UI ??? ??
         Debug.Log($"Timer Start: {GetLimitTime()} sec");
         _gameUI.Start_Timer();
     }
 
     public void StopLimitTimer()
     {
-        // TODO: Å¸ÀÌ¸Ó Stop
+        // TODO: ???? Stop
         Debug.Log("Timer Stop");
         _gameUI.Stop_Tmer();
     }
@@ -143,6 +150,7 @@ public class GameManager : MonoBehaviour
     private void UpdateSuccessAgent(Sprite sprite, float probability)
     {
         SuccessAgentDic.Add(sprite, probability);
+        Debug.Log($"SuccessAgentDic: {sprite.name} - {probability}");
     }
 
     private void UpdateFailAgent(Sprite sprite, float probability)

@@ -21,8 +21,11 @@ public class PaintStateController : StateController
 
     public override void OnEnterState()
     {
-        this.transform.DOMoveY(-8f, 1f).SetEase(Ease.InOutExpo);
+        this.transform.DOMoveY(-11f, 1f).SetEase(Ease.InOutExpo);
+
         Init();
+
+        CursorManager.instance.EquipTool(CursorType.Brush);
     }
 
     public override void OnUpdateState()
@@ -32,8 +35,10 @@ public class PaintStateController : StateController
 
     public override void OnExitState()
     {
-        this.transform.DOMoveY(-19f, 1f).SetEase(Ease.InOutExpo);
+        this.transform.DOMoveY(-20f, 1f).SetEase(Ease.InOutExpo);
         base.OnExitState();
+
+        CursorManager.instance.EquipTool(CursorType.Hand);
     }
 
     private void Init()
@@ -72,5 +77,7 @@ public class PaintStateController : StateController
         _currentPaintColor = paintController.GetColor();
         MaskController maskController = MaskCreateManager.instance.GetCurrentMaskController();
         maskController.SetPaintColor(_currentPaintColor);
+
+        CursorManager.instance.SetColor(_currentPaintColor);
     }
 }
