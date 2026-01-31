@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     private IGameHandler currentHandler;
 
     public string gameScene;
+    public string cutScene;
     [SerializeField] private float Limittime;
 
     public GameUI _gameUI;
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
         handlers = new Dictionary<GAME, IGameHandler>
         {
             { GAME.MENU,    new MenuHandler(this)},
+            { GAME.CUTSCENE, new CutSceneHandler(this)},
             { GAME.START,   new StartHandler(this) },
             { GAME.WAITING, new WaitingHandler(this) },
             { GAME.CONTACT, new ContactHandler(this) },

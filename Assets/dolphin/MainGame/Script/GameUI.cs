@@ -88,7 +88,7 @@ public class GameUI : MonoBehaviour
 
     protected virtual void OnMenuButtonPressed()
     {
-        AudioManager.instance.PauseBGM();
+        AudioManager.instance.StopBGM();
         AudioManager.instance.PlayOptionSound();
         ShowView(MenuView);
         Stop_Tmer();
