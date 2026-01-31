@@ -984,7 +984,7 @@ MonoBehaviour:
   - {fileID: 1846502607}
   - {fileID: 1057957445}
   - {fileID: 1458571533}
-  _cursorType: 3
+  _cursorType: 0
   cursorRect: {fileID: 521666257}
   pen_tip_1: {fileID: 358552802}
   pen_tip_2: {fileID: 1760692440}
