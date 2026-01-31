@@ -81,43 +81,54 @@ public class GameUI : MonoBehaviour
 
     public void OnBackToPlayPressed(GameObject view)
     {
+        AudioManager.instance.PlayInGameBGM();
         HideViewAndReturn(view);
         Start_Timer();
     }
 
     protected virtual void OnMenuButtonPressed()
     {
+        AudioManager.instance.PauseBGM();
+        AudioManager.instance.PlayOptionSound();
         ShowView(MenuView);
         Stop_Tmer();
     }
     protected virtual void OnBackFromMenuView()
     {
+        AudioManager.instance.PlayCloseOptionSound();
         OnBackToPlayPressed(MenuView);
     }
 
     public void OnResultUI()
     {
+        AudioManager.instance.PlayResultSound();
         ShowView(ResultView);
         Stop_Tmer();
     }
 
     protected virtual void OnAcceptButtonPressed()
     {
+        AudioManager.instance.PlayClickSound();
+        AudioManager.instance.StopBGM();
         GameState.i.SaveGameData(_controlRateUI.slider.value, _resultUI.Bonus_Score);
         GameState.i.SetState(GAME.START);
     }
     public void OnGameOverUI()
     {
+        AudioManager.instance.PlayResultSound();
         ShowView(GameOverView);
         Stop_Tmer();
     }
 
     protected virtual void OnRestartButtonPressed()
     {
+        AudioManager.instance.PlayClickSound();
         GameState.i.SetState(GAME.START);
     }
     protected virtual void GoToMainMenu()
     {
+        AudioManager.instance.PlayClickSound();
+        AudioManager.instance.StopBGM();
         SceneManager.LoadScene(MainMenuScene_Name);
     }
 
