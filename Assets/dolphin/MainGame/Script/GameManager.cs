@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public interface IGameHandler
 {
@@ -20,6 +21,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float Limittime;
 
     public GameUI _gameUI;
+
+    public Dictionary<Sprite, float> SuccessAgentDic;
+    public Dictionary<Sprite, float> FailAgentDic;
+
+    public int Tal_cnt = 0;
+    public float Max_Score = 0.0f;
 
     void Awake()
     {
@@ -42,6 +49,11 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void ResetScore()
+    {
+        Tal_cnt = 0;
+        Max_Score = 0.0f;
+    }
 
     private void OnEnable()
     {
@@ -107,6 +119,66 @@ public class GameManager : MonoBehaviour
     public void GoEnd()
     {
         state.SetState(GAME.END);
+    }
+
+    public void SentAgent(Sprite sprite, float probability)
+    {
+        Tal_cnt++;
+        CheckProbability(probability);
+
+        float AgentProbability = probability + 10.0f;
+
+        float MissionProbability = Random.Range(0.0f, 1.0f) * 100.0f;
+
+        if(AgentProbability >= MissionProbability)
+        {
+            UpdateSuccessAgent(sprite, probability);
+        }
+        else
+        {
+            UpdateFailAgent(sprite, probability);
+        }
+    }
+
+    private void UpdateSuccessAgent(Sprite sprite, float probability)
+    {
+        SuccessAgentDic.Add(sprite, probability);
+    }
+
+    private void UpdateFailAgent(Sprite sprite, float probability)
+    {
+        FailAgentDic.Add(sprite, probability);
+    }
+
+    private void CheckProbability(float probability)
+    {
+        float Score = 0;
+
+        if(probability >= 70.0f)
+        {
+            Score = 12;
+        }
+        else if(probability >= 60.0f)
+        {
+            Score = 6;
+        }
+        else if(probability >= 50.0f)
+        {
+            Score = 3;
+        }
+        else if(probability >= 30.0f)
+        {
+            Score = -6;
+        }
+        else if(probability >= 10.0f)
+        {
+            Score = -12;
+        }
+        else
+        {
+            Score = -24;
+        }
+        _gameUI.UpdateConquer(Score);
     }
 }
 

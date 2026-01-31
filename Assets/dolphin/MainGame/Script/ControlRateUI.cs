@@ -40,6 +40,11 @@ public class ControlRateUI : MonoBehaviour
             timeLeft = 0;
         }
 
+        if(GameManager.i.Max_Score <= Now_Gage)
+        {
+            GameManager.i.Max_Score = Now_Gage;
+        }
+
         if (Now_Gage <= Limit_Gage)
         {
             running = false;

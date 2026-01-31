@@ -1,6 +1,11 @@
+using NUnit.Framework;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
@@ -98,7 +103,7 @@ public class GameUI : MonoBehaviour
 
     protected virtual void OnAcceptButtonPressed()
     {
-        GameState.i.SaveGameData(_controlRateUI.slider.value, 10.0f);
+        GameState.i.SaveGameData(_controlRateUI.slider.value, _resultUI.Bonus_Score);
         GameState.i.SetState(GAME.START);
     }
     public void OnGameOverUI()
@@ -114,5 +119,10 @@ public class GameUI : MonoBehaviour
     protected virtual void GoToMainMenu()
     {
         SceneManager.LoadScene(MainMenuScene_Name);
+    }
+
+    public void UpdateConquer(float data)
+    {
+        _controlRateUI.slider.value += data;
     }
 }

@@ -1,15 +1,18 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Drawing;
 using System.Xml.Serialization;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public enum CursorType
 {
     Hand,
     Knife,
     Brush,
+    BigBrush,
 }
 public class CursorManager : MonoBehaviour
 {
@@ -19,6 +22,10 @@ public class CursorManager : MonoBehaviour
 
     [Header("UI Cursor (optional)")]
     public RectTransform cursorRect;
+
+    public Image pen_tip_1;
+    public Image pen_tip_2;
+    public ParticleSystem pen_Particle;
 
     void Awake()
     {
@@ -58,7 +65,22 @@ public class CursorManager : MonoBehaviour
         }
     }
 
-    private void EquipTool(CursorType type)
+    public void SetColor(UnityEngine.Color color)
+    {
+        pen_tip_1.color = color;
+        pen_tip_2.color = color;
+        var main = pen_Particle.main;
+        main.startColor = color;
+    }
+
+    public void initial_Color()
+    {
+        pen_tip_1.color = UnityEngine.Color.white;
+        pen_tip_2.color = UnityEngine.Color.white;
+        var main = pen_Particle.main;
+        main.startColor = UnityEngine.Color.white;
+    }
+    public void EquipTool(CursorType type)
     {
         int index = type.GetHashCode();
         for (int i = 0; i < _cursor.Length; i++)
@@ -68,8 +90,16 @@ public class CursorManager : MonoBehaviour
             {
                 cursorRect = _cursor[i].GetComponent<RectTransform>();
             }
-            
-            
+            if(type == CursorType.Brush)
+            {
+                initial_Color();
+            }
+            if (type == CursorType.BigBrush)
+            {
+                initial_Color();
+            }
+
+
         }
     }
 }
