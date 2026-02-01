@@ -9,6 +9,9 @@ public class RequestStateController : StateController
     public RequestPanelController _requestPanel;
     public override void OnEnterState()
     {
+        if (GameState.i.PlayState == GAME.END)
+            return;
+        
         this.transform.DOMoveY(-11f, 1f).SetEase(Ease.InOutExpo);
 
         // 초기화

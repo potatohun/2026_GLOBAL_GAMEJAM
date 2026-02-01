@@ -6,12 +6,10 @@ public class PropController : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
     [SerializeField] private LayerMask _maskLayer;
-
-    private bool _isUsed = false;
+    [SerializeField] private ParticleSystem _particleSystem;
 
     void Awake()
     {
-        _isUsed = false;
         if (_camera == null)
             _camera = Camera.main;
         if (_maskLayer == 0)
@@ -25,9 +23,6 @@ public class PropController : MonoBehaviour
 
     public void OnDrag()
     {
-        if (_isUsed)
-            return;
-
         if (_camera == null || Mouse.current == null)
             return;
 
@@ -41,7 +36,7 @@ public class PropController : MonoBehaviour
     public void OnDragEnd()
     {
         AudioManager.instance.PlayDetailsDown();
-        _isUsed = true;
+        _particleSystem.Play();
 
         // 마지막 마우스 포인터 위치가 Mask Layer 위에 있는지 Raycast로 확인
         bool isOnMaskLayer = IsMouseOverMaskLayer();

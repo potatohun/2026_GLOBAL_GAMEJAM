@@ -68,6 +68,7 @@ public class ResultStateController : StateController
         _currentResultSprite = targetSprite;
 
         _resultPanelController.SetResultImage(baseSprite, targetSprite);
+        _resultPanelController.SetSimilarity(_currentSimilarity);
         _resultPanelController.Open();
     }
 
