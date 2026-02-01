@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System.Collections;
 
 public class InGameUIController : MonoBehaviour
 {
@@ -54,13 +55,19 @@ public class InGameUIController : MonoBehaviour
     {
         _previewPanel.gameObject.SetActive(isActive);
     }
+    
+    private Coroutine _previewAutoCloseCoroutine;
+    private int _previewAutoCloseTime = 3;
 
     public void OnClickPreviewButton()
     {
+        if (_previewAutoCloseCoroutine != null)
+            StopCoroutine(_previewAutoCloseCoroutine);
+
         if (_isOpenPreviewPanel)
         {
             AudioManager.instance.PlayCloseOptionSound();
-            
+
             // 미리보기 닫기
             _previewPanel.DOAnchorPosX(-660f, 0.5f).SetEase(_easeType).OnComplete(() =>
             {
@@ -71,33 +78,38 @@ public class InGameUIController : MonoBehaviour
         else
         {
             AudioManager.instance.PlayOptionSound();
-            
+
             // 미리보기 열기
             _previewPanel.DOAnchorPosX(-60f, 0.5f).SetEase(_easeType).OnComplete(() =>
             {
                 _isOpenPreviewPanel = true;
                 _previewButtonArrow.transform.localScale = new Vector3(1, 1, 1);
+                _previewAutoCloseCoroutine = StartCoroutine(PreviewAutoCloseCoroutine());
             });
         }
     }
 
     public void SetPreviewPanel(bool isOpen)
     {
+        if (_previewAutoCloseCoroutine != null)
+            StopCoroutine(_previewAutoCloseCoroutine);
+
         if (isOpen)
         {
             AudioManager.instance.PlayOptionSound();
-            
+
             _previewPanel.DOKill(true);
             _previewPanel.DOAnchorPosX(-60f, 0.5f).SetEase(_easeType).OnComplete(() =>
             {
                 _isOpenPreviewPanel = true;
                 _previewButtonArrow.transform.localScale = new Vector3(1, 1, 1);
+                _previewAutoCloseCoroutine = StartCoroutine(PreviewAutoCloseCoroutine());
             });
         }
         else
         {
             AudioManager.instance.PlayCloseOptionSound();
-            
+
             _previewPanel.DOKill(true);
             _previewPanel.DOAnchorPosX(-660f, 0.5f).SetEase(_easeType).OnComplete(() =>
             {
@@ -105,6 +117,12 @@ public class InGameUIController : MonoBehaviour
                 _previewButtonArrow.transform.localScale = new Vector3(-1, 1, 1);
             });
         }
+    }
+
+    private IEnumerator PreviewAutoCloseCoroutine()
+    {
+        yield return new WaitForSeconds(_previewAutoCloseTime);
+        SetPreviewPanel(false);
     }
 
     public void SetPreviewImage(Sprite sprite)
