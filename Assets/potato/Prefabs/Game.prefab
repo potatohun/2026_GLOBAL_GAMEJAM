@@ -1175,6 +1175,7 @@ MonoBehaviour:
   _requestText: {fileID: 7968568819456001}
   _requestImage: {fileID: 8334378738002556120}
   _requestButtonArrow: {fileID: 2027544177455652658}
+  _requestButtonCooldown: 3
 --- !u!114 &6995434979680817638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1194,6 +1195,7 @@ MonoBehaviour:
   _resultMaskImage: {fileID: 3514517140047307999}
   _similarityText: {fileID: 3245657727178398524}
   _resultStateController: {fileID: 7786214988904067867}
+  _buttonCooldown: 2
 --- !u!1 &1701630738235219281
 GameObject:
   m_ObjectHideFlags: 0
@@ -2561,7 +2563,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3444055501616439736}
         m_TargetAssemblyTypeName: RequestPanelController, Assembly-CSharp
-        m_MethodName: Close
+        m_MethodName: OnClickRequestButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3377,8 +3379,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76a24d25a886eb348bb12600ac8046b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TextureCompareController
-  _horizontalTolerance: 3
-  _verticalTolerance: 3
+  _horizontalTolerance: 1
+  _verticalTolerance: 1
   _downSampleSize: 100
   _alphaThreshold: 0.1
   _colorThreshold: 0.1
@@ -5716,7 +5718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResultStateController
   _textureCompareController: {fileID: 3340204355675125337}
-  _enterDelay: 2
+  _enterDelay: 1
   _captureCamera: {fileID: 6072526326958445108}
   _captureTarget: {fileID: 8953965792619558583}
   _captureSize: 512

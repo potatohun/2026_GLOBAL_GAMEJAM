@@ -15,6 +15,16 @@ public class ResultPanelController : MonoBehaviour
 
     public ResultStateController _resultStateController;
 
+    [Header("Button Cooldown")]
+    [SerializeField] private float _buttonCooldown = 2f;
+    private float _buttonCooldownRemain;
+
+    private void Update()
+    {
+        if (_buttonCooldownRemain > 0f)
+            _buttonCooldownRemain -= Time.deltaTime;
+    }
+
     public void Open()
     {
         AudioManager.instance.PlayOptionSound();
@@ -50,23 +60,28 @@ public class ResultPanelController : MonoBehaviour
 
     public void OnSellButtonClick()
     {
+        if (_buttonCooldownRemain > 0f)
+            return;
+
+        _buttonCooldownRemain = _buttonCooldown;
+
         AudioManager.instance.PlayClickSound();
 
-        // TO DO : 점수 보냄
         GameManager.i.SentAgent(_resultStateController.GetCurrentResultSprite(), _resultStateController.GetCurrentSimilarity());
-
         PersonController.instance.Show();
-
         Close();
     }
 
     public void OnDepositButtonClick()
     {
-         AudioManager.instance.PlayClickSound();
+        if (_buttonCooldownRemain > 0f)
+            return;
 
-        // 다음으로 넘어가기
+        _buttonCooldownRemain = _buttonCooldown;
+
+        AudioManager.instance.PlayClickSound();
+
         MaskCreateManager.instance.Next();
-        
         Close();
     }
 }

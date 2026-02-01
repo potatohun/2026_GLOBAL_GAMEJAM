@@ -36,7 +36,7 @@ public class RequestStateController : StateController
 
     IEnumerator RequestCoroutine()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
 
         // 새로운 MaskData 생성
         MaskData maskData = MaskDataList.instance.GetRandomMaskData();

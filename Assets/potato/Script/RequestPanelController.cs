@@ -44,11 +44,25 @@ public class RequestPanelController : MonoBehaviour
     {
         _baseMaskImage.sprite = sprite;
     }
-    
+
+    [Header("Request Button")]
+    [SerializeField] private float _requestButtonCooldown = 3f;
+    private float _requestButtonCooldownRemain;
+
+    private void Update()
+    {
+        if (_requestButtonCooldownRemain > 0f)
+            _requestButtonCooldownRemain -= Time.deltaTime;
+    }
+
     public void OnClickRequestButton()
     {
+        if (_requestButtonCooldownRemain > 0f)
+            return;
+
+        _requestButtonCooldownRemain = _requestButtonCooldown;
+
         AudioManager.instance.PlayClickSound();
-        
         Close();
     }
 }
