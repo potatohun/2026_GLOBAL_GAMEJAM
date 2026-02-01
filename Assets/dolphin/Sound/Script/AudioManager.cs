@@ -87,12 +87,14 @@ public class AudioManager : MonoBehaviour
 
     public void PlayInGameBGM()
     {
-        BGM_AudioSource.PlayOneShot(bgmDict["BGM_Ingame_Loop"]);
+        BGM_AudioSource.clip = bgmDict["BGM_Ingame_Loop"];
+        BGM_AudioSource.Play();
     }
 
     public void PlayTitleBGM()
     {
-        BGM_AudioSource.PlayOneShot(bgmDict["BGM_Title_Loop"]);
+        BGM_AudioSource.clip = bgmDict["BGM_Title_Loop"];
+        BGM_AudioSource.Play();
     }
 
     public void PlayDetailsUp()
