@@ -3377,8 +3377,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76a24d25a886eb348bb12600ac8046b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TextureCompareController
-  _horizontalTolerance: 10
-  _verticalTolerance: 10
+  _horizontalTolerance: 3
+  _verticalTolerance: 3
+  _downSampleSize: 100
+  _alphaThreshold: 0.1
+  _colorThreshold: 0.1
 --- !u!1 &5119136975607831629
 GameObject:
   m_ObjectHideFlags: 0

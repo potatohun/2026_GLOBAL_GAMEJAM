@@ -9,6 +9,45 @@ public class TextureCompareController : MonoBehaviour
     [SerializeField]
     private int _verticalTolerance = 0;
 
+    [SerializeField]
+    [Tooltip("비교 전 다운샘플링 크기 (512x512 → 이 값으로 리사이즈)")]
+    private int _downSampleSize = 100;
+
+    [SerializeField]
+    [Range(0f, 1f)]
+    [Tooltip("이 값 미만의 alpha는 비교 대상에서 제외 (투명 처리)")]
+    private float _alphaThreshold = 0.1f;
+
+    [SerializeField]
+    [Range(0f, 1f)]
+    [Tooltip("색상(RGB) 차이가 이 값 미만이면 매칭으로 인정")]
+    private float _colorThreshold = 0.1f;
+
+    /// <summary>
+    /// 텍스쳐를 targetSize x targetSize로 다운샘플링 (포인트 샘플링)
+    /// </summary>
+    private Texture2D DownSample(Texture2D source, int targetSize)
+    {
+        targetSize = Mathf.Clamp(targetSize, 4, 512);
+        Texture2D result = new Texture2D(targetSize, targetSize);
+        Color[] srcPixels = source.GetPixels();
+
+        for (int y = 0; y < targetSize; y++)
+        {
+            for (int x = 0; x < targetSize; x++)
+            {
+                float u = (x + 0.5f) / targetSize;
+                float v = (y + 0.5f) / targetSize;
+                int srcX = Mathf.Clamp(Mathf.FloorToInt(u * source.width), 0, source.width - 1);
+                int srcY = Mathf.Clamp(Mathf.FloorToInt(v * source.height), 0, source.height - 1);
+                int idx = srcY * source.width + srcX;
+                result.SetPixel(x, y, srcPixels[idx]);
+            }
+        }
+        result.Apply();
+        return result;
+    }
+
     public float Compare(Texture2D baseSprite, Texture2D targetSprite) {
         Texture2D baseTexture = baseSprite;
         Texture2D targetTexture = targetSprite;
@@ -18,44 +57,35 @@ public class TextureCompareController : MonoBehaviour
             return -1f;
         }
 
-        Rect r1 = new Rect(0, 0, baseTexture.width, baseTexture.height);
-        Rect r2 = new Rect(0, 0, targetTexture.width, targetTexture.height);
-        int w1 = (int)r1.width;
-        int h1 = (int)r1.height;
-        int w2 = (int)r2.width;
-        int h2 = (int)r2.height;
+        // 512x512 등 큰 텍스처를 100x100으로 다운샘플링하여 비교
+        Texture2D baseDown = DownSample(baseTexture, _downSampleSize);
+        Texture2D targetDown = DownSample(targetTexture, _downSampleSize);
 
-        Debug.Log("Base Texture: " + w1 + "x" + h1);
-        Debug.Log("Target Texture: " + w2 + "x" + h2);
+        int compareW = baseDown.width;
+        int compareH = baseDown.height;
 
-        int compareW = Mathf.Min(w1, w2);
-        int compareH = Mathf.Min(h1, h2);
+        Debug.Log($"Base: {baseTexture.width}x{baseTexture.height} → {compareW}x{compareH}, Target: {targetTexture.width}x{targetTexture.height} → {compareW}x{compareH}");
+
         if (compareW <= 0 || compareH <= 0) 
         {
             Debug.LogWarning("Compare Width or Compare Height is less than 0.");
+            Object.Destroy(baseDown);
+            Object.Destroy(targetDown);
             return -1f;
         }
 
-        int xMin1 = (int)r1.xMin;
-        int yMin1 = (int)r1.yMin;
-        int xMin2 = (int)r2.xMin;
-        int yMin2 = (int)r2.yMin;
-
-        // 전체 픽셀 배열을 한 번에 가져오기 (대폭 최적화)
-        Color[] basePixels = baseTexture.GetPixels(xMin1, yMin1, compareW, compareH);
-        Color[] targetPixels = targetTexture.GetPixels(xMin2, yMin2, compareW, compareH);
+        Color[] basePixels = baseDown.GetPixels();
+        Color[] targetPixels = targetDown.GetPixels();
 
         int matchCount = 0;
         int count = 0;
-        const float alphaThreshold = 0.1f;
-        const float colorThreshold = 0.1f;
 
         for (int y = 0; y < compareH; y++) {
             for (int x = 0; x < compareW; x++) {
                 Color c1 = basePixels[y * compareW + x];
 
-                // if (c1.a < alphaThreshold)
-                //     continue;
+                if (c1.a < _alphaThreshold)
+                    continue;
 
                 bool isMatch = false;
 
@@ -74,13 +104,13 @@ public class TextureCompareController : MonoBehaviour
 
                         Color c2 = targetPixels[targetY * compareW + targetX];
 
-                        // if (c2.a < alphaThreshold)
-                        //     continue;
+                        if (c2.a < _alphaThreshold)
+                            continue;
 
-                        if (Mathf.Abs(c1.r - c2.r) < colorThreshold
-                         && Mathf.Abs(c1.g - c2.g) < colorThreshold
-                         && Mathf.Abs(c1.b - c2.b) < colorThreshold
-                         && Mathf.Abs(c1.a - c2.a) < colorThreshold)
+                        if (Mathf.Abs(c1.r - c2.r) < _colorThreshold
+                         && Mathf.Abs(c1.g - c2.g) < _colorThreshold
+                         && Mathf.Abs(c1.b - c2.b) < _colorThreshold
+                         && Mathf.Abs(c1.a - c2.a) < _colorThreshold)
                         {
                             isMatch = true;
                             break;
@@ -97,9 +127,14 @@ public class TextureCompareController : MonoBehaviour
         if (count == 0) 
         {
             Debug.LogWarning("Count is 0.");
+            Object.Destroy(baseDown);
+            Object.Destroy(targetDown);
             return -1f;
         }
 
-        return ((float)matchCount / count) * 100f;
+        float result = ((float)matchCount / count) * 100f;
+        Object.Destroy(baseDown);
+        Object.Destroy(targetDown);
+        return result;
     }
 }
