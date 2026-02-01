@@ -30,7 +30,7 @@ public class TimerUI : MonoBehaviour
         float angle = Mathf.Lerp(0f, -360f, t);
         needle.localRotation = Quaternion.Euler(0f, 0f, angle);
 
-        Debug.Log(limitTime - elapsed);
+   
         if((limitTime - elapsed) <= 60.0f && !isAlarm)
         {
             AudioManager.instance.ReportSound();

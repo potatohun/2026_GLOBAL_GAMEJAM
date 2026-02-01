@@ -13,6 +13,7 @@ public class TitleMenuUI : MonoBehaviour
     [SerializeField] private GameObject _OptionView;
     [SerializeField] private GameObject _mainButtonView;
     [SerializeField] private GameObject _startButtonView;
+    [SerializeField] private GameObject _CreditView;
 
     // Main Menu Buttons
     [Header("Main Menu UI")]
@@ -108,9 +109,20 @@ public class TitleMenuUI : MonoBehaviour
         AudioManager.instance.PlayOptionSound();
         ShowView(_OptionView);
     }
+
+    protected virtual void OnCreditButtonPressed()
+    {
+        AudioManager.instance.PlayOptionSound();
+        ShowView(_CreditView);
+    }
     protected virtual void OnBackFromOptionView()
     {
         OnBackToMenuPressed(_OptionView);
+    }
+
+    protected virtual void OnBackFromCreditView()
+    {
+        OnBackToMenuPressed(_CreditView);
     }
 
     public void OnQuitButtonPressed()
